@@ -3,7 +3,7 @@
 This is a PowerShell script for automation of routine tasks done after fresh installations of Windows 10. This is by no means any complete set of all existing Windows tweaks and neither is it another "antispying" type of script. It's simply a setting which I like to use and which in my opinion make the system less obtrusive.
 
 ## Usage
-If you just want to run the script with default preset, simply right click on the *Win10.ps1* file, choose *Run with PowerShell*, and confirm execution policy change. Make sure your account is a member of *Administrators* group as the script attempts to run with elevated privileges.
+If you just want to run the script with default preset, simply double click on *ExecuteScript.bat* and then you will be asked if you want to run the script as an Administrator.
 
 ### Advanced usage
 The script supports customized presets where you can specify which tweaks should be applied. You can either pass the function names directly as parameters.  
