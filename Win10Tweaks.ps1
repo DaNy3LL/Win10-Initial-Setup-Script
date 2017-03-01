@@ -1,92 +1,126 @@
-##########
+######################################################################
 # Win10 Initial Setup Script
-# Author: Disassembler <disassembler@dasm.cz>
-# Version: 2.1, 2017-02-08
-##########
+# Original Author: Disassembler <disassembler@dasm.cz>
+# This version was personalised by DaNy3LL <dany3ll1337@gmail.com>
+# Current version: 1.1, 2017-03-01
+# This script is based: version 2.1, 2017-02-08
+######################################################################
 
-# Ask for elevated permissions if required
+# READ THIS SCRIPT CAREFULLY BEFORE RUNNING IT!
+# ADJUST IT TO YOUR LIKING BY COMMENTING/UNCOMMENTING INSIDE THE DEFAULT PRESET.
+
+# THIS IS A PERSONALIZED VERSION.
+# Those tweaks are based on my personal prefference.
+# This script will reboot your machine when completed.
+
+# Check for elevated permissions
 If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")) {
-	Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" $args" -Verb RunAs
+	Write-Warning "Failed to start script as an Administrator"  
 	Exit
 }
 
 # Default preset
 $preset = @(
-	### Privacy Settings ###
-	"DisableTelemetry",             # "EnableTelemetry",
-	"DisableWiFiSense",             # "EnableWiFiSense",
-	"DisableSmartScreen",           # "EnableSmartScreen",
-	"DisableWebSearch",             # "EnableWebSearch",
-	"DisableStartSuggestions",      # "EnableStartSuggestions",
-	"DisableLocationTracking",      # "EnableLocationTracking",
-	"DisableFeedback",              # "EnableFeedback",
-	"DisableAdvertisingID",         # "EnableAdvertisingID",
-	"DisableCortana",               # "EnableCortana",
-	"DisableErrorReporting",        # "EnableErrorReporting",
-	"RestrictUpdateP2P",            # "UnrestrictUpdateP2P",
-	"DisableAutoLogger",            # "EnableAutoLogger",
-	"DisableDiagTrack",             # "EnableDiagTrack",
-	"DisableWAPPush",               # "EnableWAPPush",
+	### Perform registry backup before doing anything ###
+	"BackupRegistry",
 
-	### Service Tweaks ###
-	# "LowerUAC",                   # "RaiseUAC",
-	# "EnableSharingMappedDrives",  # "DisableSharingMappedDrives",
-	"DisableAdminShares",           # "EnableAdminShares",
-	"DisableFirewall",              # "EnableFirewall",
-	# "DisableDefender",            # "EnableDefender",
-	# "DisableUpdateMSRT",          # "EnableUpdateMSRT",
-	# "DisableUpdateDriver",        # "EnableUpdateDriver",
-	"DisableUpdateRestart",         # "EnableUpdateRestart",
-	"DisableHomeGroups",            # "EnableHomeGroups",
-	"DisableRemoteAssistance",      # "EnableRemoteAssistance",
-	"EnableRemoteDesktop",          # "DisableRemoteDesktop",
-	"DisableAutoplay",              # "EnableAutoplay",
-	"DisableAutorun",               # "EnableAutorun",
-	# "DisableDefragmentation",     # "EnableDefragmentation",
-	# "SetBIOSTimeUTC",             # "SetBIOSTimeLocal",
+	############# Privacy Settings #############
+	"DisableAdvertisingID",					# "EnableAdvertisingID",
+	"EnableSmartScreen",					# "DisableSmartScreen",
+	"DisableTypingInfo",					# "EnableTypingInfo",
+	"DisableAccesToLanguage",				# "EnableAccesToLanguage",
+	"DisableLocationTracking",				# "EnableLocationTracking",
+	"RestrictAccesToCamera",				# "GiveAccesToCamera",
+	"RestrictAccesToMic",					# "GiveAccesToMic",
+	"RestrictAccountInfo",					# "GiveAccesToAccountInfo",
+	"RestrictAccesToCalendar",				# "GiveAccesToCalendar",
+	"RestrictAccesToMessages",				# "GiveAccesToMessages",
+	"RestrictAccesToRadio",					# "GiveAccesToRadio",
+	"DisableDeviceSyncing",					# "EnableDeviceSyncing",
+	"DisableFeedback",					# "EnableFeedback",
+	"DisableTelemetry",					# "EnableTelemetry",
+	"EnableCortana",					# "DisableCortana",
+	"DisableWiFiSense",					# "EnableWiFiSense",
+	"DisableWebSearch",					# "EnableWebSearch",
+	"DisableStartSuggestions",				# "EnableStartSuggestions",
+	"DisableTipsAboutWindows",				# "EnableTipsAboutWindows",
+	"DisableErrorReporting",				# "EnableErrorReporting",
+	"RestrictUpdateP2P",					# "UnrestrictUpdateP2P",
+	"DisableAutoLogger",					# "EnableAutoLogger",
+	"DisableDiagTrack",					# "EnableDiagTrack",
+	"DisableWAPPush",					# "EnableWAPPush",
+
+	############# Service Tweaks #############
+	# "LowerUAC",						# "RaiseUAC",
+	# "EnableSharingMappedDrives",				# "DisableSharingMappedDrives",
+	"DisableAdminShares",					# "EnableAdminShares",
+	# "DisableFirewall",					# "EnableFirewall",
+	# "DisableDefender",					# "EnableDefender",
+	# "DisableUpdateMSRT",					# "EnableUpdateMSRT",
+	# "DisableUpdateDriver",				# "EnableUpdateDriver",
+	"DisableUpdateRestart",					# "EnableUpdateRestart",
+	"DisableHomeGroups",					# "EnableHomeGroups",
+	"DisableRemoteAssistance",				# "EnableRemoteAssistance",
+	"EnableRemoteDesktop",					# "DisableRemoteDesktop",
+	"DisableAutoplay",					# "EnableAutoplay",
+	"DisableAutorun",					# "EnableAutorun",
+	# "DisableDefragmentation",				# "EnableDefragmentation",
+	# "SetBIOSTimeUTC",					# "SetBIOSTimeLocal",
+	"DisableUnwantedApps",					# "EnableUnwantedApps",
 
 	### UI Tweaks ###
-	"DisableActionCenter",          # "EnableActionCenter",
-	"DisableLockScreen",            # "EnableLockScreen",
-	# "DisableLockScreenRS1",       # "EnableLockScreenRS1",
-	"DisableStickyKeys",            # "EnableStickyKeys",
-	"HideTaskbarSearchBox",         # "ShowTaskbarSearchBox",
-	"HideTaskView",                 # "ShowTaskView",
-	"ShowSmallTaskbarIcons",        # "ShowLargeTaskbarIcons",
-	"ShowTaskbarTitles",            # "HideTaskbarTitles",
-	"ShowTrayIcons",                # "HideTrayIcons",
-	"ShowKnownExtensions",          # "HideKnownExtensions",
-	"ShowHiddenFiles",              # "HideHiddenFiles",
-	"ExplorerThisPC",               # "ExplorerQuickAccess",
-	"ShowThisPCOnDesktop",          # "HideThisPCFromDesktop",
-	"HideDesktopFromThisPC",        # "ShowDesktopInThisPC",
-	"HideDocumentsFromThisPC",      # "ShowDocumentsInThisPC",
-	"HideDownloadsFromThisPC",      # "ShowDownloadsInThisPC",
-	"HideMusicFromThisPC",          # "ShowMusicInThisPC",
-	"HidePicturesFromThisPC",       # "ShowPicturesInThisPC",
-	"HideVideosFromThisPC",         # "ShowVideosInThisPC",
-	# "AddENKeyboard",              # "RemoveENKeyboard",
-	# "EnableNumlock",              # "DisableNumlock",
+	# "DisableActionCenter",				# "EnableActionCenter",
+	"EnableLockScreen",					# "DisableLockScreen",
+	# "DisableLockScreenRS1",				# "EnableLockScreenRS1",
+	"DisableStickyKeys",					# "EnableStickyKeys",
+	# "HideTaskbarSearchBox",				# "ShowTaskbarSearchBox",
+	# "HideTaskView",					# "ShowTaskView",
+	#"ShowSmallTaskbarIcons",				# "ShowLargeTaskbarIcons",
+	#"ShowTaskbarTitles",					# "HideTaskbarTitles",
+	#"ShowTrayIcons",					# "HideTrayIcons",
+	"ShowKnownExtensions",					# "HideKnownExtensions",
+	"ShowHiddenFiles",					# "HideHiddenFiles",
+	"ExplorerThisPC",					# "ExplorerQuickAccess",
+	"ShowThisPCOnDesktop",					# "HideThisPCFromDesktop",
+	"HideDesktopFromThisPC",				# "ShowDesktopInThisPC",
+	"HideDocumentsFromThisPC",				# "ShowDocumentsInThisPC",
+	"HideDownloadsFromThisPC",				# "ShowDownloadsInThisPC",
+	"HideMusicFromThisPC",					# "ShowMusicInThisPC",
+	"HidePicturesFromThisPC",				# "ShowPicturesInThisPC",
+	"HideVideosFromThisPC",					# "ShowVideosInThisPC",
+	# "AddENKeyboard",					# "RemoveENKeyboard",
+	"EnableNumlock",					# "DisableNumlock",
 
-	### Application Tweaks ###
-	"DisableOneDrive",              # "EnableOneDrive",
-	"UninstallOneDrive",            # "InstallOneDrive",
-	"UninstallBloatware",           # "InstallBloatware",
-	"DisableConsumerApps",          # "EnableConsumerApps",
-	"DisableXboxDVR",               # "EnableXboxDVR",
-	# "UninstallMediaPlayer",       # "InstallMediaPlayer",
-	# "UninstallWorkFolders",       # "InstallWorkFolders",
-	# "InstallLinuxSubsystem",      # "UninstallLinuxSubsystem",
-	"SetPhotoViewerAssociation",    # "UnsetPhotoViewerAssociation",
-	"AddPhotoViewerOpenWith",       # "RemovePhotoViewerOpenWith",
-	"DisableSearchAppInStore",      # "EnableSearchAppInStore",
-	"DisableNewAppPrompt",          # "EnableNewAppPrompt",
-	"EnableF8BootMenu",             # "DisableF8BootMenu",
+	############# Application Tweaks #############
+	"DisableOneDrive",					# "EnableOneDrive",
+	"UninstallOneDrive",					# "InstallOneDrive",
+	"UninstallBloatware",					# "InstallBloatware",
+	"DisableConsumerApps",					# "EnableConsumerApps",
+	"DisableXboxDVR",					# "EnableXboxDVR",
+	# "UninstallMediaPlayer",				# "InstallMediaPlayer",
+	# "UninstallWorkFolders",				# "InstallWorkFolders",
+	# "InstallLinuxSubsystem",				# "UninstallLinuxSubsystem",
+	"SetPhotoViewerAssociation",				# "UnsetPhotoViewerAssociation",
+	"AddPhotoViewerOpenWith",				# "RemovePhotoViewerOpenWith",
+	"DisableSearchAppInStore",				# "EnableSearchAppInStore",
+	"DisableNewAppPrompt",					# "EnableNewAppPrompt",
+	"EnableF8BootMenu",					# "DisableF8BootMenu",
+	
+	############# Other Tweaks #############
+	# "DisableWindowsServices",
+	# "DisableScheduledTasks",
+	# "RemoveFeatures",
+	"SetPowerPlan(`"High performance`")",			# "SetPowerPlan(`"Balanced`")",
+	"AddNotepadToShell",
+	# "AddNotepadPPToShell",
 
-	### Auxiliary Functions ###
+	############# Auxiliary Functions #############
 	"WaitForKey",
 	"Restart"
 )
+
+# Create shortcut for HKCR
+New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
 
 # Load preset from arguments or a file
 If ($args.length -gt 0) {
@@ -96,11 +130,175 @@ If ($args.length -gt 0) {
 	}
 }
 
-
-
-##########
+####################
 # Privacy Settings
-##########
+####################
+
+# Disable Advertising ID
+Function DisableAdvertisingID {
+	Write-Host "Disabling Advertising ID..."
+	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
+		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
+}
+
+# Enable Advertising ID
+Function EnableAdvertisingID {
+	Write-Host "Enabling Advertising ID..."
+	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -ErrorAction SilentlyContinue
+}
+
+# Disable SmartScreen Filter
+Function DisableSmartScreen {
+	Write-Host "Disabling SmartScreen Filter..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "SmartScreenEnabled" -Type String -Value "Off"
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" -Name "EnableWebContentEvaluation" -Type DWord -Value 0
+}
+
+# Enable SmartScreen Filter
+Function EnableSmartScreen {
+	Write-Host "Enabling SmartScreen Filter..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "SmartScreenEnabled" -Type String -Value "RequireAdmin"
+	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" -Name "EnableWebContentEvaluation" -ErrorAction SilentlyContinue
+}
+
+# Disable sending informations to Microsoft about typing and writing
+Function DisableTypingInfo {
+	Write-Host "Enable sending informations about typing and writing..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Input\TIPC" -Name "Enabled" -Type DWord -Value 0
+}
+
+# Enable sending informations to Microsoft about typing and writing
+Function EnableTypingInfo {
+	Write-Host "Disable sending informations about typing and writing..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Input\TIPC" -Name "Enabled" -Type DWord -Value 1
+}
+
+# Disable websites acces to language list
+Function DisableAccesToLanguage {
+	Write-Host "Disable websites acces to language list..."
+	Set-ItemProperty -Path "HKCU:\Control Panel\International\User Profile" -Name "HttpAcceptLanguageOptOut" -Type DWord -Value 1
+}
+
+# Enable websites acces to language list
+Function EnableAccesToLanguage {
+	Write-Host "Enable websites acces to language list..."
+	Set-ItemProperty -Path "HKCU:\Control Panel\International\User Profile" -Name "HttpAcceptLanguageOptOut" -Type DWord -Value 0
+}
+
+# Disable Location Tracking
+Function DisableLocationTracking {
+	Write-Host "Disabling Location Tracking..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 0
+}
+
+# Enable Location Tracking
+Function EnableLocationTracking {
+	Write-Host "Enabling Location Tracking..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 1
+}
+
+# Restrict apps acces to camera
+Function RestrictAccesToCamera {
+	Write-Host "Restricting apps acces to camera..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to camera
+Function GiveAccesToCamera {
+	Write-Host "Giving apps acces to camera..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Restrict apps acces to microphone
+Function RestrictAccesToMic {
+	Write-Host "Restricting apps acces to microphone..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to microphone
+Function GiveAccesToMic {
+	Write-Host "Giving apps acces to Microphone..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Restrict apps acces to name, picture & account info
+Function RestrictAccountInfo {
+	Write-Host "Restricting apps acces to account information..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to name, picture & account info
+Function GiveAccesToAccountInfo {
+	Write-Host "Giving apps acces to account information..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Restrict apps acces to calendar
+Function RestrictAccesToCalendar {
+	Write-Host "Restricting apps acces to calendar..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to calendar
+Function GiveAccesToCalendar {
+	Write-Host "Giving apps acces to calendar..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Restrict apps acces to messages
+Function RestrictAccesToMessages {
+	Write-Host "Restricting apps acces to messages..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to messages
+Function GiveAccesToMessages {
+	Write-Host "Giving apps acces to messages..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Restrict apps acces to radio
+Function RestrictAccesToRadio {
+	Write-Host "Restricting apps acces to radio..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to radio
+Function GiveAccesToRadio {
+	Write-Host "Giving apps acces to radio..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Disable device syncing
+Function DisableDeviceSyncing {
+	Write-Host "Disabling device syncing..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\LooselyCoupled" -Name "Value" -Type String -Value "Deny"
+}
+
+# Enable device syncing
+Function EnableDeviceSyncincg {
+	Write-Host "Enabling device syncing..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\LooselyCoupled" -Name "Value" -Type String -Value "Allow"
+}
+
+# Disable Feedback
+Function DisableFeedback {
+	Write-Host "Disabling Feedback..."
+	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules")) {
+		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -Type DWord -Value 0
+}
+
+# Enable Feedback
+Function EnableFeedback {
+	Write-Host "Enabling Feedback..."
+	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -ErrorAction SilentlyContinue
+}
 
 # Disable Telemetry
 Function DisableTelemetry {
@@ -135,20 +333,6 @@ Function EnableWiFiSense {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name "Value" -Type DWord -Value 1
 }
 
-# Disable SmartScreen Filter
-Function DisableSmartScreen {
-	Write-Host "Disabling SmartScreen Filter..."
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "SmartScreenEnabled" -Type String -Value "Off"
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" -Name "EnableWebContentEvaluation" -Type DWord -Value 0
-}
-
-# Enable SmartScreen Filter
-Function EnableSmartScreen {
-	Write-Host "Enabling SmartScreen Filter..."
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "SmartScreenEnabled" -Type String -Value "RequireAdmin"
-	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" -Name "EnableWebContentEvaluation" -ErrorAction SilentlyContinue
-}
-
 # Disable Web Search in Start Menu
 Function DisableWebSearch {
 	Write-Host "Disabling Bing Search in Start Menu..."
@@ -180,48 +364,16 @@ Function EnableStartSuggestions {
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SilentInstalledAppsEnabled" -Type DWord -Value 1
 }
 
-# Disable Location Tracking
-Function DisableLocationTracking {
-	Write-Host "Disabling Location Tracking..."
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 0
-	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 0
+# Disable tips about Windows
+Function DisableTipsAboutWindows {
+	Write-Host "Disabling tips about Windows..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SoftLandingEnabled" -Type DWord -Value 0
 }
 
-# Enable Location Tracking
-Function EnableLocationTracking {
-	Write-Host "Enabling Location Tracking..."
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 1
-	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 1
-}
-
-# Disable Feedback
-Function DisableFeedback {
-	Write-Host "Disabling Feedback..."
-	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules")) {
-		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Force | Out-Null
-	}
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -Type DWord -Value 0
-}
-
-# Enable Feedback
-Function EnableFeedback {
-	Write-Host "Enabling Feedback..."
-	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -ErrorAction SilentlyContinue
-}
-
-# Disable Advertising ID
-Function DisableAdvertisingID {
-	Write-Host "Disabling Advertising ID..."
-	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
-		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
-	}
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
-}
-
-# Enable Advertising ID
-Function EnableAdvertisingID {
-	Write-Host "Enabling Advertising ID..."
-	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -ErrorAction SilentlyContinue
+# Enable tips about Windows
+Function EnableTipsAboutWindows {
+	Write-Host "Enabling tips about Windows..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SoftLandingEnabled" -Type DWord -Value 1
 }
 
 # Disable Cortana
@@ -331,13 +483,12 @@ Function EnableWAPPush {
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\dmwappushservice" -Name "DelayedAutoStart" -Type DWord -Value 1
 }
 
-
-
-##########
+####################
 # Service Tweaks
-##########
+####################
 
 # Lower UAC level
+# WARNING: This disables UAC. Only use it if you're a l33t h4x0r.
 Function LowerUAC {
 	Write-Host "Lowering UAC level..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Type DWord -Value 0
@@ -544,11 +695,21 @@ Function SetBIOSTimeLocal {
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" -Name "RealTimeIsUniversal" -ErrorAction SilentlyContinue
 }
 
+# Disable instalation of potentially unwanted apps from the Windows store
+Function DisableUnwantedApps {
+	Write-Host "Disabling installation of unwanted apps..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -Type DWord -Value 1
+}
 
+# Enable instalation of potentially unwanted apps from the Windows store
+Function EnableUnwantedApps {
+	Write-Host "Enabling installation of unwanted apps..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -ErrorAction SilentlyContinue
+}
 
-##########
+####################
 # UI Tweaks
-##########
+####################
 
 # Disable Action Center
 Function DisableActionCenter {
@@ -856,11 +1017,9 @@ Function DisableNumlock {
 	}
 }
 
-
-
-##########
+####################
 # Application Tweaks
-##########
+####################
 
 # Disable OneDrive
 Function DisableOneDrive {
@@ -992,6 +1151,7 @@ Function InstallBloatware {
 	Get-AppxPackage -AllUsers "GAMELOFTSA.Asphalt8Airborne" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.WindowsFeedbackHub" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 }
+
 # In case you have removed them for good, you can try to restore the files using installation medium as follows
 # New-Item C:\Mnt -Type Directory | Out-Null
 # dism /Mount-Image /ImageFile:D:\sources\install.wim /index:1 /ReadOnly /MountDir:C:\Mnt
@@ -1164,14 +1324,137 @@ Function DisableF8BootMenu {
 	bcdedit /set `{current`} bootmenupolicy Standard | Out-Null
 }
 
+####################
+# Other Weaks
+####################
 
+# Disable services that are not needed
+function DisableWindowsServices {
+	$services = @(
+		"diagnosticshub.standardcollector.service" # Microsoft (R) Diagnostics Hub Standard Collector Service
+		"DiagTrack"                                # Diagnostics Tracking Service
+		"dmwappushservice"                         # WAP Push Message Routing Service (see known issues)
+		"HomeGroupListener"                        # HomeGroup Listener
+		"HomeGroupProvider"                        # HomeGroup Provider
+		"lfsvc"                                    # Geolocation Service
+		"MapsBroker"                               # Downloaded Maps Manager
+		"NetTcpPortSharing"                        # Net.Tcp Port Sharing Service
+		"RemoteAccess"                             # Routing and Remote Access
+		"RemoteRegistry"                           # Remote Registry
+		"SharedAccess"                             # Internet Connection Sharing (ICS)
+		"TrkWks"                                   # Distributed Link Tracking Client
+		"WbioSrvc"                                 # Windows Biometric Service
+		#"WlanSvc"                                 # WLAN AutoConfig
+		"WMPNetworkSvc"                            # Windows Media Player Network Sharing Service
+		"wscsvc"                                   # Windows Security Center Service
+		#"WSearch"                                 # Windows Search
+		"XblAuthManager"                           # Xbox Live Auth Manager
+		"XblGameSave"                              # Xbox Live Game Save Service
+		"XboxNetApiSvc"                            # Xbox Live Networking Service
 
-##########
+		# Services which cannot be disabled
+		#"WdNisSvc"
+	)
+
+	foreach ($service in $services) {
+		Write-Host "Trying to disable $service..."
+		Get-Service -Name $service | Set-Service -StartupType Disabled
+	}
+	
+	Set-Content C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl -Value "" -Force
+}
+
+# Disable unwanted scheduled tasks
+function DisableScheduledTasks {
+	$tasks = @(
+		"Microsoft\Windows\Application Experience\ProgramDataUpdater"
+		"Microsoft\Windows\AppID\SmartScreenSpecific"
+		"Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser"
+		"Microsoft\Windows\CloudExperienceHost\CreateObjectTask"
+		"Microsoft\Windows\Customer Experience Improvement Program\Consolidator"
+		"Microsoft\Windows\Customer Experience Improvement Program\KernelCeipTask"
+		"Microsoft\Windows\Customer Experience Improvement Program\UsbCeip"
+		"Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector"
+		"Microsoft\Windows\Feedback\Siuf\DmClient"
+		"Microsoft\Windows\NetTrace\GatherNetworkInfo"
+		"Microsoft\Windows\Windows Error Reporting\QueueReporting"
+	)
+	
+	foreach ($task in $tasks) {
+		Write-Host "Trying to disable $task..."
+		schtasks /Change /TN $task /Disable | out-null
+	}
+}
+
+# Uninstall good-for-nothing-browser aka Internet Explorer
+Function RemoveFeatures {
+	#Get-WindowsOptionalFeature -Online | Select FeatureName | Select-String Internet*
+	#Disable-WindowsOptionalFeature -FeatureName Internet-Explorer-Optional-amd64 –Online
+	# Internet Explorer
+	Write-Host "Removing Internet Explorer..."
+	Dism /online /Disable-Feature /FeatureName:Internet-Explorer-Optional-amd64 /quiet /norestart
+	# Enable .NET Framework 3.5
+	Write-Host "Enabling .NET Framework 3.5..."
+	Dism /online /Enable-Feature /FeatureName:NetFx3 /quiet /norestart
+}
+
+# Set your preffered power option
+Function SetPowerPlan ($NewPlan) {
+	Try {
+		$Plan = powercfg -l | %{if($_.contains($NewPlan)) {$_.split()[3]}}
+		$CurrPlan = $(powercfg -getactivescheme).split()[3]
+		if ($CurrPlan -ne $Plan) {powercfg -setactive $Plan}
+    }
+	Catch {
+		Write-Warning -Message "Unable to set power plan to $NewPlan"
+	}
+}
+
+# Add Notepad to shell
+Function AddNotepadToShell {
+	Write-Host "Adding Notepad to right click menu"
+	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad")) {
+		New-Item -Path "HKCR:\Directory\Background\shell\Notepad" | Out-Null
+	}
+	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad\command")) {
+		New-Item -Path "HKCR:\Directory\Background\shell\Notepad\command" | Out-Null
+	}
+	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad\command" -Name "(Default)" -Type String -Value "C:\Windows\System32\notepad.exe"
+}
+
+# Add Notepad++ to shell
+Function AddNotepadPPToShell {
+	Write-Host "Adding Notepad++ to right click menu"
+	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad++")) {
+		New-Item -Path "HKCR:\Directory\Background\shell\Notepad++" | Out-Null
+	}
+	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad++\command")) {
+		New-Item -Path "HKCR:\Directory\Background\shell\Notepad++\command" | Out-Null
+	}
+	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad++\command" -Name "(Default)" -Type String -Value "C:\Program Files (x86)\Notepad++\notepad++.exe"
+}
+
+####################
 # Auxiliary Functions
-##########
+####################
+
+Function BackupRegistry {
+	if (!(test-path -PathType Leaf C:\registry_backup_HKLM.reg)) { reg export HKLM C:\registry_backup_HKLM.reg | Out-Null }
+	if (!(test-path -PathType Leaf C:\registry_backup_HKCU.reg)) { reg export HKCU C:\registry_backup_HKCU.reg | Out-Null }
+	if (!(test-path -PathType Leaf C:\registry_backup_HKCR.reg)) { reg export HKCR C:\registry_backup_HKCR.reg | Out-Null }
+}
 
 Function WaitForKey {
 	Write-Host
+	Write-Host "Now head to Settings > Privacy and check the settings."
+	Write-Host "There MAY be something left out."
+	Write-Host "[!] You have to manually disable apps acces to contacts & email"
+	Write-Host "Settings > Privacy > Contacts"
+	Write-Host "Settings > Privacy > Email"
+	Write-Host "[!] You also have to disable background apps!"
+	Write-Host "Settings > Privacy > Background apps"
+	Write-Host
+	Write-Host "After you're done, pres any key and your PC will reboot." -ForegroundColor Black -BackgroundColor White
 	Write-Host "Press any key to continue..." -ForegroundColor Black -BackgroundColor White
 	[Console]::ReadKey($true) | Out-Null
 }
@@ -1180,7 +1463,6 @@ Function Restart {
 	Write-Host "Restarting..."
 	Restart-Computer
 }
-
 
 # Call the functions defined by preset
 ForEach ($line in $preset) {
