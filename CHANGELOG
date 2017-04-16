@@ -1,0 +1,28 @@
+############# v1.2 #############
++ Added:
+	EnableOldVolumeMixer - Restores the volume mixer used on Windows 7 & 8 (Turned on by default)
+	DisableOldVolumeMixer - Restores the new volume mixer introduced in Windows 10
+	ShowFileOperationsDetails - Shows full details on operations (copying, moving)
+	HideFileOperationsDetails - Hides full details on operations (copying, moving)
+	HideSyncNotifications - Hide sync notifications inside file explorer
+	ShowSyncNotifications - Show sync notifications inside file explorer
+	UninstallWindowsStore - Removes the Windows Store
+	InstallWindowsStore - Re-installs the Windows Store
+	ExtendedControlPanel - Creates a shortcut for Extended Control Panel aka God Mode
+	A few lines inside EnableSmartScreen and DisableSmartScreen
+	More apps inside the bloatware list
+- Deleted:
+	cls command from the batch file
+	Xbox App from UninstallBloatware and InstallBloatware (see DisableXboxFeatures and EnableXboxFeatures)
+* Modifications:
+	Replaced DisableXboxDVR with DisableXboxFeatures and EnableXboxDVR with EnableXboxFeatures
+	Changed the name of the batch file to Tweaks.bat
+	Changed the name of the tweaks file to Tweaks.ps1
+	Changed the key name inside DisableDefender and EnableDefender
+	Moved Tweaks.bat & Tweaks.ps1 to /Main Scripts
+	Commented removal of Sticky Notes & Photos app
+################################
+
+############# v1.1 #############
+* First release
+################################

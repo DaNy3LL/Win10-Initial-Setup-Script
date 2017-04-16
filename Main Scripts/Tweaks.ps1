@@ -2,7 +2,7 @@
 # Win10 Initial Setup Script
 # Original Author: Disassembler <disassembler@dasm.cz>
 # This version was personalised by DaNy3LL <dany3ll1337@gmail.com>
-# Current version: 1.1, 2017-03-01
+# Current version: 1.2, 2017-04-16
 # This script is based: version 2.1, 2017-02-08
 ######################################################################
 
@@ -26,7 +26,7 @@ $preset = @(
 
 	############# Privacy Settings #############
 	"DisableAdvertisingID",					# "EnableAdvertisingID",
-	"EnableSmartScreen",					# "DisableSmartScreen",
+	# "EnableSmartScreen",					# "DisableSmartScreen",
 	"DisableTypingInfo",					# "EnableTypingInfo",
 	"DisableAccesToLanguage",				# "EnableAccesToLanguage",
 	"DisableLocationTracking",				# "EnableLocationTracking",
@@ -37,22 +37,22 @@ $preset = @(
 	"RestrictAccesToMessages",				# "GiveAccesToMessages",
 	"RestrictAccesToRadio",					# "GiveAccesToRadio",
 	"DisableDeviceSyncing",					# "EnableDeviceSyncing",
-	"DisableFeedback",					# "EnableFeedback",
-	"DisableTelemetry",					# "EnableTelemetry",
-	"EnableCortana",					# "DisableCortana",
-	"DisableWiFiSense",					# "EnableWiFiSense",
-	"DisableWebSearch",					# "EnableWebSearch",
+	"DisableFeedback",						# "EnableFeedback",
+	"DisableTelemetry",						# "EnableTelemetry",
+	"EnableCortana",						# "DisableCortana",
+	"DisableWiFiSense",						# "EnableWiFiSense",
+	"DisableWebSearch",						# "EnableWebSearch",
 	"DisableStartSuggestions",				# "EnableStartSuggestions",
 	"DisableTipsAboutWindows",				# "EnableTipsAboutWindows",
 	"DisableErrorReporting",				# "EnableErrorReporting",
 	"RestrictUpdateP2P",					# "UnrestrictUpdateP2P",
 	"DisableAutoLogger",					# "EnableAutoLogger",
-	"DisableDiagTrack",					# "EnableDiagTrack",
-	"DisableWAPPush",					# "EnableWAPPush",
+	"DisableDiagTrack",						# "EnableDiagTrack",
+	"DisableWAPPush",						# "EnableWAPPush",
 
 	############# Service Tweaks #############
-	# "LowerUAC",						# "RaiseUAC",
-	# "EnableSharingMappedDrives",				# "DisableSharingMappedDrives",
+	# "LowerUAC",							# "RaiseUAC",
+	# "EnableSharingMappedDrives",			# "DisableSharingMappedDrives",
 	"DisableAdminShares",					# "EnableAdminShares",
 	# "DisableFirewall",					# "EnableFirewall",
 	# "DisableDefender",					# "EnableDefender",
@@ -62,25 +62,27 @@ $preset = @(
 	"DisableHomeGroups",					# "EnableHomeGroups",
 	"DisableRemoteAssistance",				# "EnableRemoteAssistance",
 	"EnableRemoteDesktop",					# "DisableRemoteDesktop",
-	"DisableAutoplay",					# "EnableAutoplay",
-	"DisableAutorun",					# "EnableAutorun",
+	"DisableAutoplay",						# "EnableAutoplay",
+	"DisableAutorun",						# "EnableAutorun",
 	# "DisableDefragmentation",				# "EnableDefragmentation",
-	# "SetBIOSTimeUTC",					# "SetBIOSTimeLocal",
+	# "SetBIOSTimeUTC",						# "SetBIOSTimeLocal",
 	"DisableUnwantedApps",					# "EnableUnwantedApps",
 
 	### UI Tweaks ###
 	# "DisableActionCenter",				# "EnableActionCenter",
-	"EnableLockScreen",					# "DisableLockScreen",
+	"EnableLockScreen",						# "DisableLockScreen",
 	# "DisableLockScreenRS1",				# "EnableLockScreenRS1",
 	"DisableStickyKeys",					# "EnableStickyKeys",
+	"ShowFileOperationsDetails",    		# "HideFileOperationsDetails",
 	# "HideTaskbarSearchBox",				# "ShowTaskbarSearchBox",
-	# "HideTaskView",					# "ShowTaskView",
-	#"ShowSmallTaskbarIcons",				# "ShowLargeTaskbarIcons",
-	#"ShowTaskbarTitles",					# "HideTaskbarTitles",
-	#"ShowTrayIcons",					# "HideTrayIcons",
+	# "HideTaskView",						# "ShowTaskView",
+	# "ShowSmallTaskbarIcons",				# "ShowLargeTaskbarIcons",
+	# "ShowTaskbarTitles",					# "HideTaskbarTitles",
+	# "ShowTrayIcons",						# "HideTrayIcons",
 	"ShowKnownExtensions",					# "HideKnownExtensions",
-	"ShowHiddenFiles",					# "HideHiddenFiles",
-	"ExplorerThisPC",					# "ExplorerQuickAccess",
+	"ShowHiddenFiles",						# "HideHiddenFiles",
+	"HideSyncNotifications"         		# "ShowSyncNotifications"
+	"ExplorerThisPC",						# "ExplorerQuickAccess",
 	"ShowThisPCOnDesktop",					# "HideThisPCFromDesktop",
 	"HideDesktopFromThisPC",				# "ShowDesktopInThisPC",
 	"HideDocumentsFromThisPC",				# "ShowDocumentsInThisPC",
@@ -88,29 +90,33 @@ $preset = @(
 	"HideMusicFromThisPC",					# "ShowMusicInThisPC",
 	"HidePicturesFromThisPC",				# "ShowPicturesInThisPC",
 	"HideVideosFromThisPC",					# "ShowVideosInThisPC",
-	# "AddENKeyboard",					# "RemoveENKeyboard",
-	"EnableNumlock",					# "DisableNumlock",
+	# "AddENKeyboard",						# "RemoveENKeyboard",
+	"EnableNumlock",						# "DisableNumlock",
+	"EnableOldVolumeMixer",					# "DisableOldVolumeMixer",
 
 	############# Application Tweaks #############
-	"DisableOneDrive",					# "EnableOneDrive",
+	"DisableOneDrive",						# "EnableOneDrive",
 	"UninstallOneDrive",					# "InstallOneDrive",
 	"UninstallBloatware",					# "InstallBloatware",
+	# "UninstallWindowsStore",      		# "InstallWindowsStore",
 	"DisableConsumerApps",					# "EnableConsumerApps",
-	"DisableXboxDVR",					# "EnableXboxDVR",
+	"DisableXboxFeatures",          		# "EnableXboxFeatures",
 	# "UninstallMediaPlayer",				# "InstallMediaPlayer",
 	# "UninstallWorkFolders",				# "InstallWorkFolders",
 	# "InstallLinuxSubsystem",				# "UninstallLinuxSubsystem",
-	"SetPhotoViewerAssociation",				# "UnsetPhotoViewerAssociation",
+	"SetPhotoViewerAssociation",			# "UnsetPhotoViewerAssociation",
 	"AddPhotoViewerOpenWith",				# "RemovePhotoViewerOpenWith",
 	"DisableSearchAppInStore",				# "EnableSearchAppInStore",
 	"DisableNewAppPrompt",					# "EnableNewAppPrompt",
-	"EnableF8BootMenu",					# "DisableF8BootMenu",
+	"EnableF8BootMenu",						# "DisableF8BootMenu",
 	
 	############# Other Tweaks #############
-	# "DisableWindowsServices",
-	# "DisableScheduledTasks",
-	# "RemoveFeatures",
-	"SetPowerPlan(`"High performance`")",			# "SetPowerPlan(`"Balanced`")",
+	"DisableWindowsServices",
+	"DisableScheduledTasks",
+	"RemoveFeatures",
+	"RemoveFlashPlayer",
+	"SetPowerPlan(`"High performance`")",	# "SetPowerPlan(`"Balanced`")",
+	"ExtendedControlPanel",
 	"AddNotepadToShell",
 	# "AddNotepadPPToShell",
 
@@ -154,6 +160,12 @@ Function DisableSmartScreen {
 	Write-Host "Disabling SmartScreen Filter..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "SmartScreenEnabled" -Type String -Value "Off"
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" -Name "EnableWebContentEvaluation" -Type DWord -Value 0
+	$edge = (Get-AppxPackage -AllUsers "Microsoft.MicrosoftEdge").PackageFamilyName
+	If (!(Test-Path "HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\$edge\MicrosoftEdge\PhishingFilter")) {
+		New-Item -Path "HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\$edge\MicrosoftEdge\PhishingFilter" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\$edge\MicrosoftEdge\PhishingFilter" -Name "EnabledV9" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\$edge\MicrosoftEdge\PhishingFilter" -Name "PreventOverride" -Type DWord -Value 0
 }
 
 # Enable SmartScreen Filter
@@ -161,6 +173,9 @@ Function EnableSmartScreen {
 	Write-Host "Enabling SmartScreen Filter..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" -Name "SmartScreenEnabled" -Type String -Value "RequireAdmin"
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost" -Name "EnableWebContentEvaluation" -ErrorAction SilentlyContinue
+	$edge = (Get-AppxPackage -AllUsers "Microsoft.MicrosoftEdge").PackageFamilyName
+	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\$edge\MicrosoftEdge\PhishingFilter" -Name "EnabledV9" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\$edge\MicrosoftEdge\PhishingFilter" -Name "PreventOverride" -ErrorAction SilentlyContinue
 }
 
 # Disable sending informations to Microsoft about typing and writing
@@ -542,14 +557,14 @@ Function EnableFirewall {
 Function DisableDefender {
 	Write-Host "Disabling Windows Defender..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Type DWord -Value 1
-	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "WindowsDefender" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
 }
 
 # Enable Windows Defender
 Function EnableDefender {
 	Write-Host "Enabling Windows Defender..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -ErrorAction SilentlyContinue
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "WindowsDefender" -Type ExpandString -Value "`"%ProgramFiles%\Windows Defender\MSASCuiL.exe`""
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -Type ExpandString -Value "`"%ProgramFiles%\Windows Defender\MSASCuiL.exe`""
 }
 
 # Disable offering of Malicious Software Removal Tool through Windows Update
@@ -777,6 +792,21 @@ Function EnableStickyKeys {
 	Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name "Flags" -Type String -Value "510"
 }
 
+# Show file operations details
+Function ShowFileOperationsDetails {
+	Write-Host "Showing file operations details..."
+	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager")) {
+		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -Type DWord -Value 1
+}
+
+# Hide file operations details
+Function HideFileOperationsDetails {
+	Write-Host "Hiding file operations details..."
+	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -ErrorAction SilentlyContinue
+}
+
 # Hide Taskbar Search button / box
 Function HideTaskbarSearchBox {
 	Write-Host "Hiding Taskbar Search box / button..."
@@ -859,6 +889,18 @@ Function ShowHiddenFiles {
 Function HideHiddenFiles {
 	Write-Host "Hiding hidden files..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Type DWord -Value 2
+}
+
+# Show sync provider notifications
+Function ShowSyncNotifications {
+	Write-Host "Showing sync provider notifications..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSyncProviderNotifications" -Type DWord -Value 1
+}
+
+# Hide sync provider notifications
+Function HideSyncNotifications {
+	Write-Host "Hiding sync provider notifications..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ShowSyncProviderNotifications" -Type DWord -Value 0
 }
 
 # Change default Explorer view to This PC
@@ -1017,6 +1059,26 @@ Function DisableNumlock {
 	}
 }
 
+# Enable old Volume Mixer
+Function EnableOldVolumeMixer {
+	Write-Host "Enabling old Volume Mixer..."
+	If (-Not (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC"))
+	{
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name MTCUVC
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC" -Name "EnableMtcUvc" -Type DWord -Value 0
+}
+
+# Disable old Volume Mixer
+Function DisableOldVolumeMixer {
+	Write-Host "Disabling old Volume Mixer..."
+	If (-Not (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC"))
+	{
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name MTCUVC
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC" -Name "EnableMtcUvc" -Type DWord -Value 1
+}
+
 ####################
 # Application Tweaks
 ####################
@@ -1075,41 +1137,53 @@ Function InstallOneDrive {
 # Uninstall default Microsoft applications
 Function UninstallBloatware {
 	Write-Host "Uninstalling default Microsoft applications..."
+	Get-AppxPackage "4DF9E0F8.Netflix" | Remove-AppxPackage
+	Get-AppxPackage "9E2F88E3.Twitter" | Remove-AppxPackage
+	Get-AppxPackage "D52A8D61.FarmVille2CountryEscape" | Remove-AppxPackage
+	Get-AppxPackage "Drawboard.DrawboardPDF" | Remove-AppxPackage
+	Get-AppxPackage "GAMELOFTSA.Asphalt8Airborne" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.3DBuilder" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.AppConnector" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.BingFinance" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.BingNews" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.BingSports" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.BingWeather" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.CommsPhone" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.ConnectivityStore" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.Getstarted" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.Messaging" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.MicrosoftOfficeHub" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.MicrosoftSolitaireCollection" | Remove-AppxPackage
+	# Get-AppxPackage "Microsoft.MicrosoftStickyNotes" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.Office.OneNote" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.Office.Sway" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.OneConnect" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.People" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.SkypeApp" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.Windows.Photos" | Remove-AppxPackage
+	# Get-AppxPackage "Microsoft.Windows.Photos" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.WindowsAlarms" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.WindowsCamera" | Remove-AppxPackage
-	Get-AppxPackage "microsoft.windowscommunicationsapps" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.WindowsFeedbackHub" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.WindowsMaps" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.WindowsPhone" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.WindowsSoundRecorder" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.XboxApp" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.ZuneMusic" | Remove-AppxPackage
 	Get-AppxPackage "Microsoft.ZuneVideo" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.AppConnector" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.ConnectivityStore" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.Office.Sway" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.Messaging" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.CommsPhone" | Remove-AppxPackage
-	Get-AppxPackage "9E2F88E3.Twitter" | Remove-AppxPackage
 	Get-AppxPackage "king.com.CandyCrushSodaSaga" | Remove-AppxPackage
-	Get-AppxPackage "4DF9E0F8.Netflix" | Remove-AppxPackage
-	Get-AppxPackage "Drawboard.DrawboardPDF" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.MicrosoftStickyNotes" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.OneConnect" | Remove-AppxPackage
-	Get-AppxPackage "D52A8D61.FarmVille2CountryEscape" | Remove-AppxPackage
-	Get-AppxPackage "GAMELOFTSA.Asphalt8Airborne" | Remove-AppxPackage
-	Get-AppxPackage "Microsoft.WindowsFeedbackHub" | Remove-AppxPackage
+	Get-AppxPackage "microsoft.windowscommunicationsapps" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.MinecraftUWP" | Remove-AppxPackage
+	Get-AppxPackage "flaregamesGmbH.RoyalRevolt2" | Remove-AppxPackage
+	Get-AppxPackage "AdobeSystemsIncorporated.AdobePhotoshopExpress" | Remove-AppxPackage
+	Get-AppxPackage "ActiproSoftwareLLC.562882FEEB491" | Remove-AppxPackage
+	Get-AppxPackage "D5EA27B7.Duolingo-LearnLanguagesforFree" | Remove-AppxPackage
+	Get-AppxPackage "Facebook.Facebook" | Remove-AppxPackage
+	Get-AppxPackage "46928bounde.EclipseManager" | Remove-AppxPackage
+	Get-AppxPackage "A278AB0D.MarchofEmpires" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.MicrosoftPowerBIForWindows" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.NetworkSpeedTest" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.MSPaint" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.Microsoft3DViewer" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.RemoteDesktop" | Remove-AppxPackage
 }
 
 # Install default Microsoft applications
@@ -1133,7 +1207,6 @@ Function InstallBloatware {
 	Get-AppxPackage -AllUsers "Microsoft.WindowsMaps" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.WindowsPhone" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.WindowsSoundRecorder" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
-	Get-AppxPackage -AllUsers "Microsoft.XboxApp" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.ZuneMusic" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.ZuneVideo" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.AppConnector" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
@@ -1150,6 +1223,19 @@ Function InstallBloatware {
 	Get-AppxPackage -AllUsers "D52A8D61.FarmVille2CountryEscape" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "GAMELOFTSA.Asphalt8Airborne" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.WindowsFeedbackHub" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.MinecraftUWP" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "flaregamesGmbH.RoyalRevolt2" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "AdobeSystemsIncorporated.AdobePhotoshopExpress" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "ActiproSoftwareLLC.562882FEEB491" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "D5EA27B7.Duolingo-LearnLanguagesforFree" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Facebook.Facebook" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "46928bounde.EclipseManager" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "A278AB0D.MarchofEmpires" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.MicrosoftPowerBIForWindows" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.NetworkSpeedTest" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.MSPaint" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.Microsoft3DViewer" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.RemoteDesktop" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 }
 
 # In case you have removed them for good, you can try to restore the files using installation medium as follows
@@ -1158,6 +1244,20 @@ Function InstallBloatware {
 # robocopy /S /SEC /R:0 "C:\Mnt\Program Files\WindowsApps" "C:\Program Files\WindowsApps"
 # dism /Unmount-Image /Discard /MountDir:C:\Mnt
 # Remove-Item -Path C:\Mnt -Recurse
+
+# Uninstall Windows Store
+Function UninstallWindowsStore {
+	Write-Host "Uninstalling Windows Store..."
+	Get-AppxPackage "Microsoft.DesktopAppInstaller" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.WindowsStore" | Remove-AppxPackage
+}
+
+# Install Windows Store
+Function InstallWindowsStore {
+	Write-Host "Installing Windows Store..."
+	Get-AppxPackage -AllUsers "Microsoft.DesktopAppInstaller" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.WindowsStore" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+}
 
 # Disable installation of consumer experience applications
 Function DisableConsumerApps {
@@ -1174,9 +1274,13 @@ Function EnableConsumerApps {
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsConsumerFeatures" -ErrorAction SilentlyContinue
 }
 
-# Disable Xbox DVR
-Function DisableXboxDVR {
-	Write-Host "Disabling Xbox DVR..."
+# Disable Xbox features
+Function DisableXboxFeatures {
+	Write-Host "Disabling Xbox features..."
+	Get-AppxPackage "Microsoft.XboxApp" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.XboxIdentityProvider" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.XboxSpeechToTextOverlay" | Remove-AppxPackage
+	Get-AppxPackage "Microsoft.XboxGameOverlay" | Remove-AppxPackage
 	Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Type DWord -Value 0
 	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR")) {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" | Out-Null
@@ -1184,9 +1288,13 @@ Function DisableXboxDVR {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -Type DWord -Value 0
 }
 
-# Enable Xbox DVR
-Function EnableXboxDVR {
-	Write-Host "Enabling Xbox DVR..."
+# Enable Xbox features
+Function EnableXboxFeatures {
+	Write-Host "Enabling Xbox features..."
+	Get-AppxPackage -AllUsers "Microsoft.XboxApp" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.XboxIdentityProvider" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.XboxSpeechToTextOverlay" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+	Get-AppxPackage -AllUsers "Microsoft.XboxGameOverlay" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Set-ItemProperty -Path "HKCU:\System\GameConfigStore" -Name "GameDVR_Enabled" -Type DWord -Value 1
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\GameDVR" -Name "AllowGameDVR" -ErrorAction SilentlyContinue
 }
@@ -1398,6 +1506,30 @@ Function RemoveFeatures {
 	Dism /online /Enable-Feature /FeatureName:NetFx3 /quiet /norestart
 }
 
+# Remove pre-installed flash player
+Function RemoveFlashPlayer {
+	Write-Host "Removing Flash Player..."
+	
+	takeown /f "%windir%\System32\Macromed" /r /d y
+	icacls "%windir%\System32\Macromed" /grant administrators:F /t
+	Remove-Item -Recurse -Force "$Env:WinDir\System32\Macromed"
+
+	takeown /f "%windir%\SysWOW64\Macromed" /r /d y
+	icacls "%windir%\SysWOW64\Macromed" /grant administrators:F /t
+	Remove-Item -Recurse -Force "$Env:WinDir\SysWOW64\Macromed"
+
+	takeown /f "%windir%\SysWOW64\FlashPlayerApp.exe" /r /d y
+	icacls "%windir%\SysWOW64\FlashPlayerApp.exe" /grant administrators:F /t
+	Remove-Item -Force "$Env:WinDir\SysWOW64\FlashPlayerApp.exe"
+
+	takeown /f "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /r /d y
+	icacls "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /grant administrators:F /t
+	Remove-Item -Force "$Env:WinDir\SysWOW64\FlashPlayerCPLApp.cpl"
+
+	Remove-Item -Recurse -Force "$env:APPDATA\Adobe"
+	Remove-Item -Recurse -Force "$env:APPDATA\Macromedia"
+}
+
 # Set your preffered power option
 Function SetPowerPlan ($NewPlan) {
 	Try {
@@ -1408,6 +1540,11 @@ Function SetPowerPlan ($NewPlan) {
 	Catch {
 		Write-Warning -Message "Unable to set power plan to $NewPlan"
 	}
+}
+
+# Create shortcut on desktop for Extended Control Panel aka GodMode
+Function ExtendedControlPanel {
+	New-Item -ItemType Directory -Path (Join-Path $env:userprofile\desktop $_) -Name 'Extended Control Panel.{ED7BA470-8E54-465E-825C-99712043E01C}'
 }
 
 # Add Notepad to shell
@@ -1422,7 +1559,7 @@ Function AddNotepadToShell {
 	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad\command" -Name "(Default)" -Type String -Value "C:\Windows\System32\notepad.exe"
 }
 
-# Add Notepad++ to shell
+# Add Notepad++ to shell (The application must be already installed)
 Function AddNotepadPPToShell {
 	Write-Host "Adding Notepad++ to right click menu"
 	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad++")) {
