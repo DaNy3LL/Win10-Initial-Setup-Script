@@ -1,3 +1,13 @@
+############# v1.3 #############
+Catched up to version 2.7 of Disassembler0
++ Added:
+	All the tweaks made by Disassembler0 until now
+- Deleted:
+	Deleted the batch file used to create a scheduled task for Zemana (it was fixed)
+* Modifications:
+	Added a preset example
+################################
+
 ############# v1.2 #############
 + Added:
 	EnableOldVolumeMixer - Restores the volume mixer used on Windows 7 & 8 (Turned on by default)

@@ -1,8 +1,7 @@
 # Description:
-# This script will use Windows package manager to bootstrap Chocolatey and
-# install a list of packages. Script will also install Sysinternals Utilities
-# into your default drive's root directory.
-# NOTE: Those are the apps that I like to install. In your case they may change!
+# This script will use Windows package manager to bootstrap Chocolatey and install a list of packages.
+# The script will also install Sysinternals Utilities into your default drive's root directory.
+# NOTE: Those are the apps that I like to install. You are free to adopt it to your personal taste.
 
 $packages = @(
 	"7zip.install"
