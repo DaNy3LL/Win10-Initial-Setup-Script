@@ -2,8 +2,7 @@
 # Win10/WinServer2016 Initial Setup Script
 # Original Author: Disassembler <disassembler@dasm.cz>
 # This version was personalised by DaNy3LL <dany3ll1337@gmail.com>
-# Current version: 1.3, 2017-09-04
-# The version this script is based on: 2.1 by Disassembler0, 2017-02-08
+# Current version: 1.3.1, 2017-09-07
 ######################################################################
 
 # READ THIS SCRIPT CAREFULLY BEFORE RUNNING IT!
@@ -24,6 +23,7 @@ $tweaks = @(
 	"DisableTypingInfo",					# "EnableTypingInfo",
 	"DisableAccesToLanguage",				# "EnableAccesToLanguage",
 	"DisableLocationTracking",				# "EnableLocationTracking",
+	"DisableMapUpdates",					# "EnableMapUpdates",
 	"RestrictAccesToCamera",				# "GiveAccesToCamera",
 	"RestrictAccesToMic",					# "GiveAccesToMic",
 	"RestrictAccountInfo",					# "GiveAccesToAccountInfo",
@@ -222,6 +222,18 @@ Function EnableLocationTracking {
 	Write-Host "Enabling Location Tracking..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" -Name "SensorPermissionState" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" -Name "Status" -Type DWord -Value 1
+}
+
+# Disable Automatic Map Updates
+Function DisableMapUpdates {
+	Write-Host "Disabling automatic map updates..."
+	Set-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name "AutoUpdateEnabled" -Type DWord -Value 0
+}
+
+# Enable Automatic Map Updates
+Function EnableMapUpdates {
+	Write-Host "Enable automatic map updates..."
+	Set-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name "AutoUpdateEnabled" -Type DWord -Value 1
 }
 
 # Restrict apps acces to camera

@@ -1,3 +1,14 @@
+############# v1.3.1 #############
+Catched up to version 2.7 of Disassembler0
++ Added:
+	EnableMapUpdates - Enables automatic map updates
+	DisableMapUpdates - Disables automatic map updates
+- Deleted:
+	Deleted the batch file used to create a scheduled task for Zemana (it was fixed)
+* Modifications:
+	Changed the wrong date inside script
+################################
+
 ############# v1.3 #############
 Catched up to version 2.7 of Disassembler0
 + Added:
