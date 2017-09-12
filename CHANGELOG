@@ -1,5 +1,18 @@
+############# v1.4 #############
+Catched up to version 2.8 of Disassembler0
++ Added:
+	The tweaks added by Disassembler0 since his 2.7 version
+	Reverse functions for:
+		DisableWindowsServices
+		DisableScheduledTasks
+		AddNotepadToShell
+		AddNotepadPPToShell
+* Modifications:
+	Renamed ExtendedControlPanel to ExtendedPanelShortcut
+	Fixed the file path inside Custom Preset.bat
+################################
+
 ############# v1.3.1 #############
-Catched up to version 2.7 of Disassembler0
 + Added:
 	EnableMapUpdates - Enables automatic map updates
 	DisableMapUpdates - Disables automatic map updates
@@ -11,6 +24,7 @@ Catched up to version 2.7 of Disassembler0
 
 ############# v1.3 #############
 Catched up to version 2.7 of Disassembler0
+
 + Added:
 	All the tweaks made by Disassembler0 until now
 - Deleted:

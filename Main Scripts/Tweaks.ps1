@@ -2,7 +2,7 @@
 # Win10/WinServer2016 Initial Setup Script
 # Original Author: Disassembler <disassembler@dasm.cz>
 # This version was personalised by DaNy3LL <dany3ll1337@gmail.com>
-# Current version: 1.3.1, 2017-09-07
+# Current version: 1.4, 2017-09-12
 ######################################################################
 
 # READ THIS SCRIPT CAREFULLY BEFORE RUNNING IT!
@@ -14,10 +14,13 @@
 
 # Default preset
 $tweaks = @(
-	### Perform registry backup before doing anything ###
+	############# Require administrator privileges
+	# "RequireAdmin",
+
+	############# Perform registry backup before doing anything
 	"BackupRegistry",
 
-	############# Privacy Settings #############
+	############# Privacy Settings
 	"DisableAdvertisingID",					# "EnableAdvertisingID",
 	# "EnableSmartScreen",					# "DisableSmartScreen",
 	"DisableTypingInfo",					# "EnableTypingInfo",
@@ -39,13 +42,13 @@ $tweaks = @(
 	"DisableStartSuggestions",				# "EnableStartSuggestions",
 	"DisableTipsAboutWindows",				# "EnableTipsAboutWindows",
 	"DisableErrorReporting",				# "EnableErrorReporting",
-	"RestrictUpdateP2P",					# "UnrestrictUpdateP2P",
+	"SetP2PUpdateLocal",            		# "SetP2PUpdateInternet",
 	"DisableAutoLogger",					# "EnableAutoLogger",
 	"DisableDiagTrack",						# "EnableDiagTrack",
 	"DisableWAPPush",						# "EnableWAPPush",
 
-	############# Service Tweaks #############
-	# "LowerUAC",							# "RaiseUAC",
+	############# Service Tweaks
+	# "SetUACLow",                  		# "SetUACHigh",
 	# "EnableSharingMappedDrives",			# "DisableSharingMappedDrives",
 	"DisableAdminShares",					# "EnableAdminShares",
 	"DisableSMB1",                			# "EnableSMB1",
@@ -68,13 +71,16 @@ $tweaks = @(
 	# "EnableHibernation",					# "DisableHibernation",
 	# "DisableFastStartup",         		# "EnableFastStartup",
 
-	### UI Tweaks ###
+	############# UI Tweaks
 	# "DisableActionCenter",				# "EnableActionCenter",
 	"EnableLockScreen",						# "DisableLockScreen",
 	# "DisableLockScreenRS1",				# "EnableLockScreenRS1",
+	"HideNetworkFromLockScreen"     		# "ShowNetworkOnLockScreen",
+	"HideShutdownFromLockScreen",   		# "ShowShutdownOnLockScreen",
 	"DisableStickyKeys",					# "EnableStickyKeys",
 	"ShowTaskManagerDetails"        		# "HideTaskManagerDetails",
 	"ShowFileOperationsDetails",    		# "HideFileOperationsDetails",
+	# "EnableFileDeleteConfirmation", 		# "DisableFileDeleteConfirmation",
 	# "HideTaskbarSearchBox",				# "ShowTaskbarSearchBox",
 	"HideTaskView",							# "ShowTaskView",
 	# "ShowSmallTaskbarIcons",				# "ShowLargeTaskbarIcons",
@@ -85,7 +91,7 @@ $tweaks = @(
 	"ShowHiddenFiles",						# "HideHiddenFiles",
 	"HideSyncNotifications"         		# "ShowSyncNotifications"
 	"HideRecentShortcuts",        			# "ShowRecentShortcuts",
-	"ExplorerThisPC",						# "ExplorerQuickAccess",
+	"SetExplorerThisPC",            		# "SetExplorerQuickAccess",
 	"ShowThisPCOnDesktop",					# "HideThisPCFromDesktop",
 	"HideDesktopFromThisPC",				# "ShowDesktopInThisPC",
 	"HideDocumentsFromThisPC",				# "ShowDocumentsInThisPC",
@@ -94,11 +100,13 @@ $tweaks = @(
 	"HidePicturesFromThisPC",				# "ShowPicturesInThisPC",
 	"HideVideosFromThisPC",					# "ShowVideosInThisPC",
 	"SetVisualFXPerformance",       		# "SetVisualFXAppearance",
+	# "DisableThumbnails",          		# "EnableThumbnails",
+	# "DisableThumbsDB",            		# "EnableThumbsDB"
 	# "AddENKeyboard",						# "RemoveENKeyboard",
 	"EnableNumlock",						# "DisableNumlock",
 	"EnableOldVolumeMixer",					# "DisableOldVolumeMixer",
 
-	############# Application Tweaks #############
+	############# Application Tweaks
 	"DisableOneDrive",						# "EnableOneDrive",
 	"UninstallOneDrive",					# "InstallOneDrive",
 	"UninstallMsftBloat",					# "InstallMsftBloat",
@@ -115,37 +123,40 @@ $tweaks = @(
 	"DisableSearchAppInStore",				# "EnableSearchAppInStore",
 	"DisableNewAppPrompt",					# "EnableNewAppPrompt",
 	"EnableF8BootMenu",						# "DisableF8BootMenu",
-	# "SetDEPOptOut",              			# "SetDEPOptIn",
+	"SetDEPOptOut",              			# "SetDEPOptIn",
 	
-	############# Other Tweaks #############
-	"DisableWindowsServices",
-	"DisableScheduledTasks",
+	############# Other Tweaks
+	"DisableWindowsServices",				# "EnableWindowsServices",
+	"DisableScheduledTasks",				# "EnableScheduledTasks",
 	"InstallNETFramework35",				# "RemoveNETFramework35",	
-	"RemoveInternetExplorer",				# "InstallInternetExplorer"			
-	"RemoveFlashPlayer",
+	"RemoveInternetExplorer",				# "InstallInternetExplorer",
 	"SetPowerPlan(`"High performance`")",	# "SetPowerPlan(`"Balanced`")",
-	"ExtendedControlPanel",
-	"AddNotepadToShell",
-	# "AddNotepadPPToShell",
 	
-	### Server Specific Tweaks ###
+	############# Personal Use Tweaks
+	"RemoveFlashPlayer",
+	"ExtendedPanelShortcut",
+	"AddNotepadToShell",					# "RemoveNotepadFromShell",
+	# "AddNotepadPPToShell",				# "RemoveNotepadPPFromShell",
+	
+	############# Server Specific Tweaks
 	# "HideServerManagerOnLogin",   # "ShowServerManagerOnLogin",
 	# "DisableShutdownTracker",     # "EnableShutdownTracker",
 	# "DisablePasswordPolicy",      # "EnablePasswordPolicy",
 	# "DisableCtrlAltDelLogin",     # "EnableCtrlAltDelLogin",
 	# "DisableIEEnhancedSecurity",  # "EnableIEEnhancedSecurity",
 
-
-	############# Auxiliary Functions #############
+	############# Auxiliary Functions
 	"WaitForKey",
 	"Restart"
 )
 
 # Create shortcut for HKCR
-New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
+If (!(Test-Path "HKCR:")) {
+	New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT | Out-Null
+}
 
 ####################
-# Privacy Settings
+# Privacy Settings #
 ####################
 
 # Disable Advertising ID
@@ -462,7 +473,7 @@ Function EnableErrorReporting {
 }
 
 # Restrict Windows Update P2P only to local network
-Function RestrictUpdateP2P {
+Function SetP2PUpdateLocal {
 	Write-Host "Restricting Windows Update P2P only to local network..."
 	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config")) {
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" | Out-Null
@@ -475,7 +486,7 @@ Function RestrictUpdateP2P {
 }
 
 # Unrestrict Windows Update P2P
-Function UnrestrictUpdateP2P {
+Function SetP2PUpdateInternet {
 	Write-Host "Unrestricting Windows Update P2P to internet..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" -Name "DODownloadMode" -ErrorAction SilentlyContinue
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization" -Name "SystemSettingsDownloadMode" -ErrorAction SilentlyContinue
@@ -527,20 +538,19 @@ Function EnableWAPPush {
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\dmwappushservice" -Name "DelayedAutoStart" -Type DWord -Value 1
 }
 
-####################
-# Service Tweaks
-####################
+##################
+# Service Tweaks #
+##################
 
-# Lower UAC level
-# WARNING: This disables UAC. Only use it if you're a l33t h4x0r.
-Function LowerUAC {
+# Lower UAC level (disabling it completely would break apps)
+Function SetUACLow {
 	Write-Host "Lowering UAC level..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "PromptOnSecureDesktop" -Type DWord -Value 0
 }
 
 # Raise UAC level
-Function RaiseUAC {
+Function SetUACHigh {
 	Write-Host "Raising UAC level..."
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ConsentPromptBehaviorAdmin" -Type DWord -Value 5
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "PromptOnSecureDesktop" -Type DWord -Value 1
@@ -845,9 +855,9 @@ Function EnableFastStartup {
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power" -Name "HiberbootEnabled" -Type DWord -Value 1
 }
 
-####################
-# UI Tweaks
-####################
+#############
+# UI Tweaks #
+#############
 
 # Disable Action Center
 Function DisableActionCenter {
@@ -901,6 +911,33 @@ Function DisableLockScreenRS1 {
 Function EnableLockScreenRS1 {
 	Write-Host "Enabling Lock screen (removing scheduler workaround)..."
 	Unregister-ScheduledTask -TaskName "Disable LockScreen" -Confirm:$false -ErrorAction SilentlyContinue
+}
+
+# Hide network options on Lock Screen
+Function HideNetworkFromLockScreen {
+	Write-Host "Hiding network options on Lock Screen..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Force | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DontDisplayNetworkSelectionUI" -Type DWord -Value 1
+}
+
+# Show network options on lock screen
+Function ShowNetworkOnLockScreen {
+	Write-Host "Showing network options on Lock Screen..."
+	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\System" -Name "DontDisplayNetworkSelectionUI" -ErrorAction SilentlyContinue
+}
+
+# Hide shutdown options from Lock Screen
+Function HideShutdownFromLockScreen {
+	Write-Host "Hiding shutdown options from Lock Screen..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ShutdownWithoutLogon" -Type DWord -Value 0
+}
+
+# Show shutdown options on lock screen
+Function ShowShutdownOnLockScreen {
+	Write-Host "Showing shutdown options on Lock Screen..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "ShutdownWithoutLogon" -Type DWord -Value 1
 }
 
 # Disable Sticky keys prompt
@@ -957,6 +994,21 @@ Function ShowFileOperationsDetails {
 Function HideFileOperationsDetails {
 	Write-Host "Hiding file operations details..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager" -Name "EnthusiastMode" -ErrorAction SilentlyContinue
+}
+
+# Enable file delete confirmation dialog
+Function EnableFileDeleteConfirmation {
+	Write-Host "Enabling file delete confirmation dialog..."
+	If (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {
+		New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "ConfirmFileDelete" -Type DWord -Value 1
+}
+
+# Disable file delete confirmation dialog
+Function DisableFileDeleteConfirmation {
+	Write-Host "Disabling file delete confirmation dialog..."
+	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Name "ConfirmFileDelete" -ErrorAction SilentlyContinue
 }
 
 # Hide Taskbar Search button / box
@@ -1085,13 +1137,13 @@ Function HideRecentShortcuts {
 }
 
 # Change default Explorer view to This PC
-Function ExplorerThisPC {
+Function SetExplorerThisPC {
 	Write-Host "Changing default Explorer view to This PC..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -Type DWord -Value 1
 }
 
 # Change default Explorer view to Quick Access
-Function ExplorerQuickAccess {
+Function SetExplorerQuickAccess {
 	Write-Host "Changing default Explorer view to Quick Access..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -ErrorAction SilentlyContinue
 }
@@ -1204,8 +1256,10 @@ Function ShowVideosInThisPC {
 Function SetVisualFXPerformance {
 	Write-Host "Adjusting visual effects for performance..."
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "DragFullWindows" -Type String -Value 0
+	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "MenuShowDelay" -Type String -Value 0
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Type Binary -Value ([byte[]](0x90,0x12,0x03,0x80,0x10,0x00,0x00,0x00))
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop\WindowMetrics" -Name "MinAnimate" -Type String -Value 0
+	Set-ItemProperty -Path "HKCU:\Control Panel\Keyboard" -Name "KeyboardDelay" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewAlphaSelect" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewShadow" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarAnimations" -Type DWord -Value 0
@@ -1217,13 +1271,43 @@ Function SetVisualFXPerformance {
 Function SetVisualFXAppearance {
 	Write-Host "Adjusting visual effects for appearance..."
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "DragFullWindows" -Type String -Value 1
+	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "MenuShowDelay" -Type String -Value 400
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Type Binary -Value ([byte[]](0x9E,0x1E,0x07,0x80,0x12,0x00,0x00,0x00))
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop\WindowMetrics" -Name "MinAnimate" -Type String -Value 1
+	Set-ItemProperty -Path "HKCU:\Control Panel\Keyboard" -Name "KeyboardDelay" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewAlphaSelect" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewShadow" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarAnimations" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Type DWord -Value 3
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\DWM" -Name "EnableAeroPeek" -Type DWord -Value 1
+}
+
+# Disable thumbnails, show only file extension icons
+Function DisableThumbnails {
+	Write-Host "Disabling thumbnails..."
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "IconsOnly" -Type DWord -Value 1
+}
+
+# Enable thumbnails
+Function EnableThumbnails {
+	Write-Host "Enabling thumbnails..."
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "IconsOnly" -Type DWord -Value 0
+}
+
+# Disable Thumbnail Cache
+function DisableThumbsDB
+{
+    Write-Host "Disabling Thumbs.db..."
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbnailCache" -Type DWord -Value 1
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbsDBOnNetworkFolders" -Type DWord -Value 1
+}
+
+# Enable Thumbnail Cache
+function EnableThumbsDB
+{
+    Write-Host "Enabling Thumbs.db..."
+	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbnailCache" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "DisableThumbsDBOnNetworkFolders" -ErrorAction SilentlyContinue
 }
 
 # Add secondary en-US keyboard
@@ -1289,9 +1373,9 @@ Function DisableOldVolumeMixer {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC" -Name "EnableMtcUvc" -Type DWord -Value 1
 }
 
-####################
-# Application Tweaks
-####################
+######################
+# Application Tweaks #
+######################
 
 # Disable OneDrive
 Function DisableOneDrive {
@@ -1419,12 +1503,6 @@ Function InstallMsftBloat {
 	Get-AppxPackage -AllUsers "Microsoft.Microsoft3DViewer" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 	Get-AppxPackage -AllUsers "Microsoft.RemoteDesktop" | ForEach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
 }
-# In case you have removed them for good, you can try to restore the files using installation medium as follows
-# New-Item C:\Mnt -Type Directory | Out-Null
-# dism /Mount-Image /ImageFile:D:\sources\install.wim /index:1 /ReadOnly /MountDir:C:\Mnt
-# robocopy /S /SEC /R:0 "C:\Mnt\Program Files\WindowsApps" "C:\Program Files\WindowsApps"
-# dism /Unmount-Image /Discard /MountDir:C:\Mnt
-# Remove-Item -Path C:\Mnt -Recurse
 
 # Uninstall default third party applications
 function UninstallThirdPartyBloat {
@@ -1695,9 +1773,9 @@ Function SetDEPOptIn {
 	bcdedit /set `{current`} nx OptIn | Out-Null
 }
 
-####################
-# Other Weaks
-####################
+###############
+# Other Weaks #
+###############
 
 # Disable services that are not needed
 function DisableWindowsServices {
@@ -1722,9 +1800,6 @@ function DisableWindowsServices {
 		"XblAuthManager"                           # Xbox Live Auth Manager
 		"XblGameSave"                              # Xbox Live Game Save Service
 		"XboxNetApiSvc"                            # Xbox Live Networking Service
-
-		# Services which cannot be disabled
-		#"WdNisSvc"
 	)
 
 	foreach ($service in $services) {
@@ -1735,7 +1810,40 @@ function DisableWindowsServices {
 	Set-Content C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl -Value "" -Force
 }
 
-# Disable unwanted scheduled tasks
+# Enable services that are not needed
+function EnableWindowsServices {
+	$services = @(
+		"diagnosticshub.standardcollector.service" # Microsoft (R) Diagnostics Hub Standard Collector Service
+		"DiagTrack"                                # Diagnostics Tracking Service
+		"dmwappushservice"                         # WAP Push Message Routing Service (see known issues)
+		"HomeGroupListener"                        # HomeGroup Listener
+		"HomeGroupProvider"                        # HomeGroup Provider
+		"lfsvc"                                    # Geolocation Service
+		"MapsBroker"                               # Downloaded Maps Manager
+		"NetTcpPortSharing"                        # Net.Tcp Port Sharing Service
+		"RemoteAccess"                             # Routing and Remote Access
+		"RemoteRegistry"                           # Remote Registry
+		"SharedAccess"                             # Internet Connection Sharing (ICS)
+		"TrkWks"                                   # Distributed Link Tracking Client
+		"WbioSrvc"                                 # Windows Biometric Service
+		#"WlanSvc"                                 # WLAN AutoConfig
+		"WMPNetworkSvc"                            # Windows Media Player Network Sharing Service
+		"wscsvc"                                   # Windows Security Center Service
+		#"WSearch"                                 # Windows Search
+		"XblAuthManager"                           # Xbox Live Auth Manager
+		"XblGameSave"                              # Xbox Live Game Save Service
+		"XboxNetApiSvc"                            # Xbox Live Networking Service
+	)
+
+	foreach ($service in $services) {
+		Write-Host "Trying to enable $service..."
+		Get-Service -Name $service | Set-Service -StartupType Enable
+	}
+	
+	Set-Content C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl -Value "" -Force
+}
+
+# Disable potentially unwanted scheduled tasks
 function DisableScheduledTasks {
 	$tasks = @(
 		"Microsoft\Windows\Application Experience\ProgramDataUpdater"
@@ -1754,6 +1862,28 @@ function DisableScheduledTasks {
 	foreach ($task in $tasks) {
 		Write-Host "Trying to disable $task..."
 		schtasks /Change /TN $task /Disable | out-null
+	}
+}
+
+# Enable potentially unwanted scheduled tasks
+function EnableScheduledTasks {
+	$tasks = @(
+		"Microsoft\Windows\Application Experience\ProgramDataUpdater"
+		"Microsoft\Windows\AppID\SmartScreenSpecific"
+		"Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser"
+		"Microsoft\Windows\CloudExperienceHost\CreateObjectTask"
+		"Microsoft\Windows\Customer Experience Improvement Program\Consolidator"
+		"Microsoft\Windows\Customer Experience Improvement Program\KernelCeipTask"
+		"Microsoft\Windows\Customer Experience Improvement Program\UsbCeip"
+		"Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector"
+		"Microsoft\Windows\Feedback\Siuf\DmClient"
+		"Microsoft\Windows\NetTrace\GatherNetworkInfo"
+		"Microsoft\Windows\Windows Error Reporting\QueueReporting"
+	)
+	
+	foreach ($task in $tasks) {
+		Write-Host "Trying to enable $task..."
+		schtasks /Change /TN $task /Enable | out-null
 	}
 }
 
@@ -1781,6 +1911,22 @@ Function RemoveInternetExplorer {
 	Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -WarningAction SilentlyContinue | Out-Null
 }
 
+# Set your preffered power option
+Function SetPowerPlan ($NewPlan) {
+	Try {
+		$Plan = powercfg -l | %{if($_.contains($NewPlan)) {$_.split()[3]}}
+		$CurrPlan = $(powercfg -getactivescheme).split()[3]
+		if ($CurrPlan -ne $Plan) {powercfg -setactive $Plan}
+    }
+	Catch {
+		Write-Warning -Message "Unable to set the power plan to $NewPlan"
+	}
+}
+
+#######################
+# Personal Use Tweaks #
+#######################
+
 # Remove pre-installed flash player
 Function RemoveFlashPlayer {
 	Write-Host "Removing Flash Player..."
@@ -1805,21 +1951,24 @@ Function RemoveFlashPlayer {
 	Remove-Item -Recurse -Force "$env:APPDATA\Macromedia"
 }
 
-# Set your preffered power option
-Function SetPowerPlan ($NewPlan) {
-	Try {
-		$Plan = powercfg -l | %{if($_.contains($NewPlan)) {$_.split()[3]}}
-		$CurrPlan = $(powercfg -getactivescheme).split()[3]
-		if ($CurrPlan -ne $Plan) {powercfg -setactive $Plan}
-    }
-	Catch {
-		Write-Warning -Message "Unable to set power plan to $NewPlan"
-	}
+# Create a shortcut on desktop for Extended Control Panel aka GodMode
+Function ExtendedPanelShortcut {
+	New-Item -ItemType Directory -Path (Join-Path $env:userprofile\desktop $_) -Name 'Extended Control Panel.{ED7BA470-8E54-465E-825C-99712043E01C}'
 }
 
-# Create shortcut on desktop for Extended Control Panel aka GodMode
-Function ExtendedControlPanel {
-	New-Item -ItemType Directory -Path (Join-Path $env:userprofile\desktop $_) -Name 'Extended Control Panel.{ED7BA470-8E54-465E-825C-99712043E01C}'
+# Disable Advertising ID
+Function DisableAdvertisingID {
+	Write-Host "Disabling Advertising ID..."
+	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
+		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
+	}
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
+}
+
+# Enable Advertising ID
+Function EnableAdvertisingID {
+	Write-Host "Enabling Advertising ID..."
+	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -ErrorAction SilentlyContinue
 }
 
 # Add Notepad to shell
@@ -1834,6 +1983,12 @@ Function AddNotepadToShell {
 	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad\command" -Name "(Default)" -Type String -Value "C:\Windows\System32\notepad.exe"
 }
 
+# Remove Notepad from shell
+Function RemoveNotepadFromShell {
+	Write-Host "Removing Notepad from right click menu"
+	Remove-Item -Path "HKCR:\Directory\Background\shell\Notepad" -ErrorAction SilentlyContinue
+}
+
 # Add Notepad++ to shell (The application must be already installed)
 Function AddNotepadPPToShell {
 	Write-Host "Adding Notepad++ to right click menu"
@@ -1846,9 +2001,15 @@ Function AddNotepadPPToShell {
 	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad++\command" -Name "(Default)" -Type String -Value "C:\Program Files (x86)\Notepad++\notepad++.exe"
 }
 
-###########################
-# Server specific Tweaks
-###########################
+# Remove Notepad++ from shell
+Function RemoveNotepadPPFromShell {
+	Write-Host "Removing Notepad++ from right click menu"
+	Remove-Item -Path "HKCR:\Directory\Background\shell\Notepad++" -ErrorAction SilentlyContinue
+}
+
+##########################
+# Server Specific Tweaks #
+##########################
 
 # Hide Server Manager after login
 Function HideServerManagerOnLogin {
@@ -1930,12 +2091,23 @@ Function EnableIEEnhancedSecurity {
 # Auxiliary Functions #
 #######################
 
+# Relaunch the script with administrator privileges
+$PSCommandArgs = $args
+Function RequireAdmin {
+	If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")) {
+		Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" $PSCommandArgs" -WorkingDirectory $pwd -Verb RunAs
+		Exit
+	}
+}
+
+# Perform a registry backup
 Function BackupRegistry {
 	if (!(test-path -PathType Leaf C:\registry_backup_HKLM.reg)) { reg export HKLM C:\registry_backup_HKLM.reg | Out-Null }
 	if (!(test-path -PathType Leaf C:\registry_backup_HKCU.reg)) { reg export HKCU C:\registry_backup_HKCU.reg | Out-Null }
 	if (!(test-path -PathType Leaf C:\registry_backup_HKCR.reg)) { reg export HKCR C:\registry_backup_HKCR.reg | Out-Null }
 }
 
+# Wait for key press
 Function WaitForKey {
 	Write-Host
 	Write-Host "Now head to Settings > Privacy and check the settings."
@@ -1951,6 +2123,7 @@ Function WaitForKey {
 	[Console]::ReadKey($true) | Out-Null
 }
 
+# Restart he computer
 Function Restart {
 	Write-Host "Restarting..."
 	Restart-Computer
@@ -1960,17 +2133,11 @@ Function Restart {
 # Parse parameters and apply tweaks #
 #####################################
 
-# Ask for elevated privileges if required
-If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]"Administrator")) {
-	Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`" $args" -WorkingDirectory $pwd -Verb RunAs
-	Exit
-}
-
 # Load function names from command line arguments or a preset file
 If ($args) {
 	$tweaks = $args
 	If ($args[0].ToLower() -eq "-preset") {
-		$tweaks = Get-Content $args[1] -ErrorAction Stop | ForEach { $_.Trim() } | Where { $_ -ne "" -and $_[0] -ne "#" }
+		$tweaks = Get-Content "$($args | Select-Object -Skip 1)" -ErrorAction Stop | ForEach { $_.Trim() } | Where { $_ -ne "" -and $_[0] -ne "#" }
 	}
 }
 
