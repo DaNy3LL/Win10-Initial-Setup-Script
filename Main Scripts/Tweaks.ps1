@@ -1,16 +1,23 @@
 ######################################################################
 # Win10/WinServer2016 Initial Setup Script
+######################################################################
 # Original Author: Disassembler <disassembler@dasm.cz>
-# This version was personalised by DaNy3LL <dany3ll1337@gmail.com>
-# Current version: 1.4, 2017-09-12
+# This version was tweaked by DaNy3LL <dany3ll1337@gmail.com>
+# Current version: 1.5, 2017-09-25
 ######################################################################
 
+######################################################################
 # READ THIS SCRIPT CAREFULLY BEFORE RUNNING IT!
 # ADJUST IT TO YOUR LIKING BY COMMENTING/UNCOMMENTING INSIDE THE DEFAULT PRESET.
+######################################################################
 
-# THIS IS A PERSONALIZED VERSION.
+######################################################################
+# NOTES:
+######################################################################
+# THIS IS A CUSTOM VERSION OF THE ORIGINAL SCRIPT.
 # Those tweaks are based on my personal prefference.
 # This script will reboot your machine when completed.
+######################################################################
 
 # Default preset
 $tweaks = @(
@@ -18,33 +25,47 @@ $tweaks = @(
 	# "RequireAdmin",
 
 	############# Perform registry backup before doing anything
-	"BackupRegistry",
+	"BackupRegistryFiles",
 
 	############# Privacy Settings
 	"DisableAdvertisingID",					# "EnableAdvertisingID",
-	# "EnableSmartScreen",					# "DisableSmartScreen",
+	"DisableAppLaunchTracking", 			# "EnableAppLaunchTracking",
+	# "DisableSmartScreen",					# "EnableSmartScreen",
+	"DisableSettingsExperimentation",		# "EnableSettingsExperimentation",
 	"DisableTypingInfo",					# "EnableTypingInfo",
-	"DisableAccesToLanguage",				# "EnableAccesToLanguage",
+	"DisableAccessToLanguage",				# "EnableAccessToLanguage",
 	"DisableLocationTracking",				# "EnableLocationTracking",
 	"DisableMapUpdates",					# "EnableMapUpdates",
-	"RestrictAccesToCamera",				# "GiveAccesToCamera",
-	"RestrictAccesToMic",					# "GiveAccesToMic",
-	"RestrictAccountInfo",					# "GiveAccesToAccountInfo",
-	"RestrictAccesToCalendar",				# "GiveAccesToCalendar",
-	"RestrictAccesToMessages",				# "GiveAccesToMessages",
-	"RestrictAccesToRadio",					# "GiveAccesToRadio",
+	"DisableBluetoothAds",					# "EnableBluetoothAds",
+	"RestrictAccessToCamera",				# "GiveAccessToCamera",
+	"RestrictAccessToMic",					# "GiveAccessToMic",
+	"RestrictAccessToNotifications",		# "GiveAccessToNotifications",
+	"RestrictAccountInfo",					# "GiveAccessToAccountInfo",
+	"RestrictAccessToContacts",				# "GiveAccessToContacts",
+	"RestrictAccessToCalendar",				# "GiveAccessToCalendar",
+	"RestrictAccessToCallHistory",			# "GiveAccessToCallHistory",
+	"RestrictAccessToEmail",				# "GiveAccessToEmail",
+	"RestrictAccessToTasks",				# "GiveAccessToTasks",
+	"RestrictAccessToMessages",				# "GiveAccessToMessages",
+	"RestrictAccessToRadio",				# "GiveAccessToRadio",
 	"DisableDeviceSyncing",					# "EnableDeviceSyncing",
 	"DisableFeedback",						# "EnableFeedback",
+	"DisableBackgroundApps",				# "EnableBackgroundApps",
+	"DisableAppDiagnostics",				# "EnableAppDiagnostics",
 	"DisableTelemetry",						# "EnableTelemetry",
-	# "EnableCortana",						# "DisableCortana",
+	"DisableCortana",						# "EnableCortana",
 	"DisableWiFiSense",						# "EnableWiFiSense",
 	"DisableWebSearch",						# "EnableWebSearch",
 	"DisableStartSuggestions",				# "EnableStartSuggestions",
 	"DisableTipsAboutWindows",				# "EnableTipsAboutWindows",
 	"DisableErrorReporting",				# "EnableErrorReporting",
+	"DisableHandwritingData",				# "EnableHandwritingData",
 	"SetP2PUpdateLocal",            		# "SetP2PUpdateInternet",
 	"DisableAutoLogger",					# "EnableAutoLogger",
 	"DisableDiagTrack",						# "EnableDiagTrack",
+	"DisableCEIP",							# "EnableCEIP",
+	"DisableAIT",							# "EnableAIT",
+	"DisableACPI",							# "EnableACPI",
 	"DisableWAPPush",						# "EnableWAPPush",
 
 	############# Service Tweaks
@@ -56,37 +77,39 @@ $tweaks = @(
 	# "SetUnknownNetworksPrivate",  		# "SetUnknownNetworksPublic",
 	# "DisableFirewall",					# "EnableFirewall",
 	# "DisableDefender",					# "EnableDefender",
+	"DisableDefenderReporting",				# "EnableDefenderReporting",
 	# "DisableUpdateMSRT",					# "EnableUpdateMSRT",
 	# "DisableUpdateDriver",				# "EnableUpdateDriver",
 	"DisableUpdateRestart",					# "EnableUpdateRestart",
 	"DisableHomeGroups",					# "EnableHomeGroups",
 	"DisableRemoteAssistance",				# "EnableRemoteAssistance",
-	"EnableRemoteDesktop",					# "DisableRemoteDesktop",
+	"DisableRemoteDesktop",					# "EnableRemoteDesktop",
+	"DisableSpotlight",						# "EnableSpotlight",
 	"DisableAutoplay",						# "EnableAutoplay",
 	"DisableAutorun",						# "EnableAutorun",
 	# "DisableDefragmentation",				# "EnableDefragmentation",
 	# "DisableSuperfetch",					# "EnableSuperfetch",
 	# "DisableIndexing",					# "EnableIndexing",
 	# "SetBIOSTimeUTC",						# "SetBIOSTimeLocal",
-	# "EnableHibernation",					# "DisableHibernation",
+	"EnableHibernation",					# "DisableHibernation",
 	# "DisableFastStartup",         		# "EnableFastStartup",
 
 	############# UI Tweaks
-	# "DisableActionCenter",				# "EnableActionCenter",
-	"EnableLockScreen",						# "DisableLockScreen",
+	"DisableActionCenter",					# "EnableActionCenter",
+	# "DisableLockScreen",					# "EnableLockScreen",
 	# "DisableLockScreenRS1",				# "EnableLockScreenRS1",
 	"HideNetworkFromLockScreen"     		# "ShowNetworkOnLockScreen",
 	"HideShutdownFromLockScreen",   		# "ShowShutdownOnLockScreen",
 	"DisableStickyKeys",					# "EnableStickyKeys",
 	"ShowTaskManagerDetails"        		# "HideTaskManagerDetails",
 	"ShowFileOperationsDetails",    		# "HideFileOperationsDetails",
-	# "EnableFileDeleteConfirmation", 		# "DisableFileDeleteConfirmation",
+	"EnableFileDeleteConfirmation", 		# "DisableFileDeleteConfirmation",
 	# "HideTaskbarSearchBox",				# "ShowTaskbarSearchBox",
 	"HideTaskView",							# "ShowTaskView",
 	# "ShowSmallTaskbarIcons",				# "ShowLargeTaskbarIcons",
-	"ShowTaskbarTitles",					# "HideTaskbarTitles",
+	# "ShowTaskbarTitles",					# "HideTaskbarTitles",
 	"HideTaskbarPeopleIcon",				# "ShowTaskbarPeopleIcon",
-	"ShowTrayIcons",						# "HideTrayIcons",
+	# "ShowTrayIcons",						# "HideTrayIcons",
 	"ShowKnownExtensions",					# "HideKnownExtensions",
 	"ShowHiddenFiles",						# "HideHiddenFiles",
 	"HideSyncNotifications"         		# "ShowSyncNotifications"
@@ -116,7 +139,7 @@ $tweaks = @(
 	"DisableXboxFeatures",          		# "EnableXboxFeatures",
 	# "UninstallMediaPlayer",				# "InstallMediaPlayer",
 	# "UninstallWorkFolders",				# "InstallWorkFolders",
-	"InstallLinuxSubsystem",				# "UninstallLinuxSubsystem",
+	# "InstallLinuxSubsystem",				# "UninstallLinuxSubsystem",
 	# "InstallHyperV",              		# "UninstallHyperV",
 	"SetPhotoViewerAssociation",			# "UnsetPhotoViewerAssociation",
 	"AddPhotoViewerOpenWith",				# "RemovePhotoViewerOpenWith",
@@ -126,24 +149,24 @@ $tweaks = @(
 	"SetDEPOptOut",              			# "SetDEPOptIn",
 	
 	############# Other Tweaks
-	"DisableWindowsServices",				# "EnableWindowsServices",
-	"DisableScheduledTasks",				# "EnableScheduledTasks",
-	"InstallNETFramework35",				# "RemoveNETFramework35",	
-	"RemoveInternetExplorer",				# "InstallInternetExplorer",
+	# "DisableWindowsServices",				# "EnableWindowsServices",
+	# "DisableScheduledTasks",				# "EnableScheduledTasks",
+	# "InstallNETFramework35",				# "UninstallNETFramework35",	
+	# "UninstallInternetExplorer",			# "InstallInternetExplorer",
 	"SetPowerPlan(`"High performance`")",	# "SetPowerPlan(`"Balanced`")",
 	
-	############# Personal Use Tweaks
-	"RemoveFlashPlayer",
-	"ExtendedPanelShortcut",
-	"AddNotepadToShell",					# "RemoveNotepadFromShell",
-	# "AddNotepadPPToShell",				# "RemoveNotepadPPFromShell",
+	############# Personal Tweaks
+	# "UninstallFlashPlayer",
+	# "ExtendedPanelShortcut",
+	# "AddNotepadToDesktopShell",			# "RemoveNotepadFromDesktopShell",
+	# "AddNotepadPPToDesktopShell",			# "RemoveNotepadPPFromDesktopShell",
 	
 	############# Server Specific Tweaks
-	# "HideServerManagerOnLogin",   # "ShowServerManagerOnLogin",
-	# "DisableShutdownTracker",     # "EnableShutdownTracker",
-	# "DisablePasswordPolicy",      # "EnablePasswordPolicy",
-	# "DisableCtrlAltDelLogin",     # "EnableCtrlAltDelLogin",
-	# "DisableIEEnhancedSecurity",  # "EnableIEEnhancedSecurity",
+	# "HideServerManagerOnLogin",   		# "ShowServerManagerOnLogin",
+	# "DisableShutdownTracker",     		# "EnableShutdownTracker",
+	# "DisablePasswordPolicy",      		# "EnablePasswordPolicy",
+	# "DisableCtrlAltDelLogin",     		# "EnableCtrlAltDelLogin",
+	# "DisableIEEnhancedSecurity",  		# "EnableIEEnhancedSecurity",
 
 	############# Auxiliary Functions
 	"WaitForKey",
@@ -174,6 +197,18 @@ Function EnableAdvertisingID {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -ErrorAction SilentlyContinue
 }
 
+# Disable app launch tracking
+Function DisableAppLaunchTracking {
+	Write-Host "Disabling app launch tracking..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Type DWord -Value 0
+}
+
+# Enable app launch tracking
+Function EnableAppLaunchTracking {
+	Write-Host "Enabling app launch tracking..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Start_TrackProgs" -Type DWord -Value 1
+}
+
 # Disable SmartScreen Filter
 Function DisableSmartScreen {
 	Write-Host "Disabling SmartScreen Filter..."
@@ -197,6 +232,21 @@ Function EnableSmartScreen {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\$edge\MicrosoftEdge\PhishingFilter" -Name "PreventOverride" -ErrorAction SilentlyContinue
 }
 
+# Disable Settings experimentation
+Function DisableSettingsExperimentation {
+	Write-Host "Disabling Settings experimentation..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\System")) {
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\System" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\System" -Name "AllowExperimentation" -Type DWord -Value 0
+}
+
+# Enable Settings experimentation
+Function EnableSettingsExperimentation {
+	Write-Host "Enabling Settings experimentation..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\System" -Name "AllowExperimentation" -ErrorAction SilentlyContinue
+}
+
 # Disable sending informations to Microsoft about typing and writing
 Function DisableTypingInfo {
 	Write-Host "Enable sending informations about typing and writing..."
@@ -210,13 +260,13 @@ Function EnableTypingInfo {
 }
 
 # Disable websites acces to language list
-Function DisableAccesToLanguage {
+Function DisableAccessToLanguage {
 	Write-Host "Disable websites acces to language list..."
 	Set-ItemProperty -Path "HKCU:\Control Panel\International\User Profile" -Name "HttpAcceptLanguageOptOut" -Type DWord -Value 1
 }
 
 # Enable websites acces to language list
-Function EnableAccesToLanguage {
+Function EnableAccessToLanguage {
 	Write-Host "Enable websites acces to language list..."
 	Set-ItemProperty -Path "HKCU:\Control Panel\International\User Profile" -Name "HttpAcceptLanguageOptOut" -Type DWord -Value 0
 }
@@ -247,28 +297,55 @@ Function EnableMapUpdates {
 	Set-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name "AutoUpdateEnabled" -Type DWord -Value 1
 }
 
+# Disable Bluetooth ads
+Function DisableBluetoothAds {
+	Write-Host "Disabling Bluetooth ads..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth")) {
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" -Name "AllowAdvertising" -Type DWord -Value 0
+}
+
+# Enable Bluetooth ads
+Function EnableBluetoothAds {
+	Write-Host "Enabling Bluetooth ads..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" -Name "AllowAdvertising" -ErrorAction SilentlyContinue
+}
+
 # Restrict apps acces to camera
-Function RestrictAccesToCamera {
+Function RestrictAccessToCamera {
 	Write-Host "Restricting apps acces to camera..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" -Name "Value" -Type String -Value "Deny"
 }
 
 # Give apps acces to camera
-Function GiveAccesToCamera {
+Function GiveAccessToCamera {
 	Write-Host "Giving apps acces to camera..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" -Name "Value" -Type String -Value "Allow"
 }
 
 # Restrict apps acces to microphone
-Function RestrictAccesToMic {
+Function RestrictAccessToMic {
 	Write-Host "Restricting apps acces to microphone..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" -Name "Value" -Type String -Value "Deny"
 }
 
 # Give apps acces to microphone
-Function GiveAccesToMic {
+Function GiveAccessToMic {
 	Write-Host "Giving apps acces to Microphone..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Restrict access to notificatons
+Function RestrictAccessToNotifications {
+	Write-Host "Restricting apps acces to notifications..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{52079E78-A92B-413F-B213-E8FE35712E72}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give access to notificatons
+Function GiveAccessToNotifications {
+	Write-Host "Giving apps acces to notifications..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{52079E78-A92B-413F-B213-E8FE35712E72}" -Name "Value" -Type String -Value "Allow"
 }
 
 # Restrict apps acces to name, picture & account info
@@ -278,43 +355,91 @@ Function RestrictAccountInfo {
 }
 
 # Give apps acces to name, picture & account info
-Function GiveAccesToAccountInfo {
+Function GiveAccessToAccountInfo {
 	Write-Host "Giving apps acces to account information..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}" -Name "Value" -Type String -Value "Allow"
 }
 
+# Restrict apps acces to contacts
+Function RestrictAccessToContacts {
+	Write-Host "Restricting apps acces to contacts..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{7D7E8402-7C54-4821-A34E-AEEFD62DED93}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to contacts
+Function GiveAccessToContacts {
+	Write-Host "Giving apps acces to contacts..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{7D7E8402-7C54-4821-A34E-AEEFD62DED93}" -Name "Value" -Type String -Value "Allow"
+}
+
 # Restrict apps acces to calendar
-Function RestrictAccesToCalendar {
+Function RestrictAccessToCalendar {
 	Write-Host "Restricting apps acces to calendar..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}" -Name "Value" -Type String -Value "Deny"
 }
 
 # Give apps acces to calendar
-Function GiveAccesToCalendar {
+Function GiveAccessToCalendar {
 	Write-Host "Giving apps acces to calendar..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}" -Name "Value" -Type String -Value "Allow"
 }
 
+# Restrict apps acces to call history
+Function RestrictAccessToCallHistory {
+	Write-Host "Restricting apps acces to call history..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{8BC668CF-7728-45BD-93F8-CF2B3B41D7AB}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to call history
+Function GiveAccessToCallHistory {
+	Write-Host "Giving apps acces to call history..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{8BC668CF-7728-45BD-93F8-CF2B3B41D7AB}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Restrict apps acces to email
+Function RestrictAccessToEmail {
+	Write-Host "Restricting apps acces to email..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{9231CB4C-BF57-4AF3-8C55-FDA7BFCC04C5}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to email
+Function GiveAccessToEmail {
+	Write-Host "Giving apps acces to email..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{9231CB4C-BF57-4AF3-8C55-FDA7BFCC04C5}" -Name "Value" -Type String -Value "Allow"
+}
+
+# Restrict apps acces to tasks
+Function RestrictAccessToTasks {
+	Write-Host "Restricting apps acces to tasks..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E390DF20-07DF-446D-B962-F5C953062741}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Give apps acces to tasks
+Function GiveAccessToTasks {
+	Write-Host "Giving apps acces to tasks..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E390DF20-07DF-446D-B962-F5C953062741}" -Name "Value" -Type String -Value "Allow"
+}
+
 # Restrict apps acces to messages
-Function RestrictAccesToMessages {
+Function RestrictAccessToMessages {
 	Write-Host "Restricting apps acces to messages..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}" -Name "Value" -Type String -Value "Deny"
 }
 
 # Give apps acces to messages
-Function GiveAccesToMessages {
+Function GiveAccessToMessages {
 	Write-Host "Giving apps acces to messages..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}" -Name "Value" -Type String -Value "Allow"
 }
 
 # Restrict apps acces to radio
-Function RestrictAccesToRadio {
+Function RestrictAccessToRadio {
 	Write-Host "Restricting apps acces to radio..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}" -Name "Value" -Type String -Value "Deny"
 }
 
 # Give apps acces to radio
-Function GiveAccesToRadio {
+Function GiveAccessToRadio {
 	Write-Host "Giving apps acces to radio..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}" -Name "Value" -Type String -Value "Allow"
 }
@@ -326,7 +451,7 @@ Function DisableDeviceSyncing {
 }
 
 # Enable device syncing
-Function EnableDeviceSyncincg {
+Function EnableDeviceSyncing {
 	Write-Host "Enabling device syncing..."
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\LooselyCoupled" -Name "Value" -Type String -Value "Allow"
 }
@@ -337,13 +462,42 @@ Function DisableFeedback {
 	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules")) {
 		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Force | Out-Null
 	}
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Force | Out-Null
+	}
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "DoNotShowFeedbackNotifications" -Type DWord -Value 1
 }
 
 # Enable Feedback
 Function EnableFeedback {
 	Write-Host "Enabling Feedback..."
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Siuf\Rules" -Name "NumberOfSIUFInPeriod" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection" -Name "DoNotShowFeedbackNotifications" -ErrorAction SilentlyContinue
+}
+
+# Disable background apps
+Function DisableBackgroundApps {
+	Write-Host "Disabling background apps..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" -Name "GlobalUserDisabled" -Type Dword -Value 1
+}
+
+# Enable background apps
+Function EnableBackgroundApps {
+	Write-Host "Enabling background apps..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" -Name "GlobalUserDisabled" -Type Dword -Value 0
+}
+
+# Disable app diagnostics
+Function DisableAppDiagnostics {
+	Write-Host "Disabling app diagnostics..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2297E4E2-5DBE-466D-A12B-0F8286F0D9CA}" -Name "Value" -Type String -Value "Deny"
+}
+
+# Enable app diagnostics
+Function EnableAppDiagnostics {
+	Write-Host "Enabling app diagnostics..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2297E4E2-5DBE-466D-A12B-0F8286F0D9CA}" -Name "Value" -Type String -Value "Allow"
 }
 
 # Disable Telemetry
@@ -416,12 +570,17 @@ Function EnableStartSuggestions {
 # Disable tips about Windows
 Function DisableTipsAboutWindows {
 	Write-Host "Disabling tips about Windows..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableSoftLanding" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SoftLandingEnabled" -Type DWord -Value 0
 }
 
 # Enable tips about Windows
 Function EnableTipsAboutWindows {
 	Write-Host "Enabling tips about Windows..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableSoftLanding" -ErrorAction SilentlyContinue
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -Name "SoftLandingEnabled" -Type DWord -Value 1
 }
 
@@ -470,6 +629,31 @@ Function DisableErrorReporting {
 Function EnableErrorReporting {
 	Write-Host "Enabling Error reporting..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting" -Name "Disabled" -ErrorAction SilentlyContinue
+}
+
+# Disable Handwriting Data Sharing
+Function DisableHandwritingData {
+	Write-Host "Disabling Handwriting Data Sharing..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\TabletPC")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\TabletPC" | Out-Null
+	}
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" | Out-Null
+	}
+	If (!(Test-Path "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\HandwritingErrorReports")) {
+		New-Item -Path "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\HandwritingErrorReports" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\TabletPC" -Name "PreventHandwritingDataSharing" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" -Name "PreventHandwritingErrorReports" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\HandwritingErrorReports" -Name "PreventHandwritingErrorReports" -Type DWord -Value 1
+}
+
+# Enable Handwriting Data Sharing
+Function EnableHandwritingData {
+	Write-Host "Enabling Handwriting Data Sharing..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\TabletPC" -Name "PreventHandwritingDataSharing" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" -Name "PreventHandwritingErrorReports" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\HandwritingErrorReports" -Name "PreventHandwritingErrorReports" -ErrorAction SilentlyContinue
 }
 
 # Restrict Windows Update P2P only to local network
@@ -521,6 +705,85 @@ Function EnableDiagTrack {
 	Write-Host "Enabling and starting Diagnostics Tracking Service..."
 	Set-Service "DiagTrack" -StartupType Automatic
 	Start-Service "DiagTrack" -WarningAction SilentlyContinue
+}
+
+# Disable Customer Experience Improvement Program
+function DisableCEIP {
+	Write-Host "Disabling Customer Experience Improvement Program..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\SQMClient\Windows")) {
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\SQMClient\Windows" | Out-Null
+	}
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\SQMClient\Windows")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\SQMClient\Windows" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\SQMClient\Windows" -Name "CEIPEnable" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\SQMClient\Windows" -Name "CEIPEnable" -Type DWord -Value 0
+	$tasks = @(
+		"Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser"
+		"Microsoft\Windows\Application Experience\ProgramDataUpdater"
+		"Microsoft\Windows\Autochk\Proxy"
+		"Microsoft\Windows\Customer Experience Improvement Program\Consolidator"
+		"Microsoft\Windows\Customer Experience Improvement Program\KernelCeipTask"
+		"Microsoft\Windows\Customer Experience Improvement Program\UsbCeip"
+		"Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector"
+	)
+	foreach ($task in $tasks) {
+		schtasks /Change /TN $task /Disable | Out-Null
+	}
+}
+
+# Enable Customer Experience Improvement Program
+function EnableCEIP {
+	Write-Host "Enabling Customer Experience Improvement Program..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\SQMClient\Windows" -Name "CEIPEnable" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\SQMClient\Windows" -Name "CEIPEnable" -ErrorAction SilentlyContinue
+	$tasks = @(
+		"Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser"
+		"Microsoft\Windows\Application Experience\ProgramDataUpdater"
+		"Microsoft\Windows\Autochk\Proxy"
+		"Microsoft\Windows\Customer Experience Improvement Program\Consolidator"
+		"Microsoft\Windows\Customer Experience Improvement Program\KernelCeipTask"
+		"Microsoft\Windows\Customer Experience Improvement Program\UsbCeip"
+		"Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector"
+	)
+	foreach ($task in $tasks) {
+		schtasks /Change /TN $task /Enable | Out-Null
+	}
+}
+
+# Disable Application Impact Telemetry
+Function DisableAIT {
+	Write-Host "Disabling Application Impact Telemetry..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat" -Name "AITEnable" -Type DWord -Value 0
+}
+
+# Enable Application Impact Telemetry
+Function EnableAIT {
+	Write-Host "Enabling Application Impact Telemetry..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat" -Name "AITEnable" -ErrorAction SilentlyContinue
+}
+
+# Disable Application Compatibility Program Inventory
+Function DisableACPI {
+	Write-Host "Disabling Application Compatibility Program Inventory..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat" | Out-Null
+	}
+	If (!(Test-Path "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\AppCompat")) {
+		New-Item -Path "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\AppCompat" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat" -Name "DisableInventory" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\AppCompat" -Name "DisableInventory" -Type DWord -Value 1
+}
+
+# Enable Application Compatibility Program Inventory
+Function EnableACPI {
+	Write-Host "Enabling Application Compatibility Program Inventory..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat" -Name "DisableInventory" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\WOW6432Node\Policies\Microsoft\Windows\AppCompat" -Name "DisableInventory" -ErrorAction SilentlyContinue
 }
 
 # Stop and disable WAP Push Service
@@ -651,6 +914,28 @@ Function EnableDefender {
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -Type ExpandString -Value "`"%ProgramFiles%\Windows Defender\MSASCuiL.exe`""
 }
 
+# Disable Defender Reporting
+Function DisableDefenderReporting {
+	Write-Host "Disabling Windows Defender's reporting..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" | Out-Null
+	}
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SpyNetReporting" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SubmitSamplesConsent" -Type DWord -Value 2
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" -Name "DontReportInfectionInformation" -Type DWord -Value 1
+}
+
+# Enable Defender Reporting
+Function EnableDefenderReporting {
+	Write-Host "Enabling Windows Defender's reporting..."
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SpyNetReporting" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SubmitSamplesConsent" -Type DWord -Value 2
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" -Name "DontReportInfectionInformation" -Type DWord -Value 1
+}
+
 # Disable offering of Malicious Software Removal Tool through Windows Update
 Function DisableUpdateMSRT {
 	Write-Host "Disabling Malicious Software Removal Tool offering..."
@@ -741,6 +1026,21 @@ Function DisableRemoteDesktop {
 	Write-Host "Disabling Remote Desktop..."
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -Type DWord -Value 1
+}
+
+# Disable Windows Spotlight
+Function DisableSpotlight {
+	Write-Host "Disabling Windows Spotlight..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" | Out-Null
+	}
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsSpotlightFeatures" -Type DWord -Value 1
+}
+
+# Enable Windows Spotlight
+Function EnableSpotlight {
+	Write-Host "Enabling Windows Spotlight..."
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name "DisableWindowsSpotlightFeatures" -ErrorAction SilentlyContinue
 }
 
 # Disable Autoplay
@@ -1260,11 +1560,11 @@ Function SetVisualFXPerformance {
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Type Binary -Value ([byte[]](0x90,0x12,0x03,0x80,0x10,0x00,0x00,0x00))
 	Set-ItemProperty -Path "HKCU:\Control Panel\Desktop\WindowMetrics" -Name "MinAnimate" -Type String -Value 0
 	Set-ItemProperty -Path "HKCU:\Control Panel\Keyboard" -Name "KeyboardDelay" -Type DWord -Value 0
-	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewAlphaSelect" -Type DWord -Value 0
-	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewShadow" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewAlphaSelect" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "ListviewShadow" -Type DWord -Value 1
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarAnimations" -Type DWord -Value 0
 	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -Name "VisualFXSetting" -Type DWord -Value 3
-	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\DWM" -Name "EnableAeroPeek" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\DWM" -Name "EnableAeroPeek" -Type DWord -Value 1
 }
 
 # Adjusts visual effects for appearance
@@ -1356,9 +1656,9 @@ Function DisableNumlock {
 # Enable old Volume Mixer
 Function EnableOldVolumeMixer {
 	Write-Host "Enabling old Volume Mixer..."
-	If (-Not (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC"))
+	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC"))
 	{
-		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name MTCUVC
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name MTCUVC | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC" -Name "EnableMtcUvc" -Type DWord -Value 0
 }
@@ -1366,9 +1666,9 @@ Function EnableOldVolumeMixer {
 # Disable old Volume Mixer
 Function DisableOldVolumeMixer {
 	Write-Host "Disabling old Volume Mixer..."
-	If (-Not (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC"))
+	If (!(Test-Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC"))
 	{
-		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name MTCUVC
+		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name MTCUVC | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\MTCUVC" -Name "EnableMtcUvc" -Type DWord -Value 1
 }
@@ -1384,12 +1684,14 @@ Function DisableOneDrive {
 		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" | Out-Null
 	}
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableFileSyncNGSC" -Type DWord -Value 1
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableLocation" -Type DWord -Value 1
 }
 
 # Enable OneDrive
 Function EnableOneDrive {
 	Write-Host "Enabling OneDrive..."
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableFileSyncNGSC" -ErrorAction SilentlyContinue
+	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableLocation" -ErrorAction SilentlyContinue
 }
 
 # Uninstall OneDrive - Not applicable to Server
@@ -1780,110 +2082,93 @@ Function SetDEPOptIn {
 # Disable services that are not needed
 function DisableWindowsServices {
 	$services = @(
-		"diagnosticshub.standardcollector.service" # Microsoft (R) Diagnostics Hub Standard Collector Service
-		"DiagTrack"                                # Diagnostics Tracking Service
-		"dmwappushservice"                         # WAP Push Message Routing Service (see known issues)
-		"HomeGroupListener"                        # HomeGroup Listener
-		"HomeGroupProvider"                        # HomeGroup Provider
-		"lfsvc"                                    # Geolocation Service
-		"MapsBroker"                               # Downloaded Maps Manager
-		"NetTcpPortSharing"                        # Net.Tcp Port Sharing Service
-		"RemoteAccess"                             # Routing and Remote Access
-		"RemoteRegistry"                           # Remote Registry
-		"SharedAccess"                             # Internet Connection Sharing (ICS)
-		"TrkWks"                                   # Distributed Link Tracking Client
-		"WbioSrvc"                                 # Windows Biometric Service
-		#"WlanSvc"                                 # WLAN AutoConfig
-		"WMPNetworkSvc"                            # Windows Media Player Network Sharing Service
-		"wscsvc"                                   # Windows Security Center Service
-		#"WSearch"                                 # Windows Search
-		"XblAuthManager"                           # Xbox Live Auth Manager
-		"XblGameSave"                              # Xbox Live Game Save Service
-		"XboxNetApiSvc"                            # Xbox Live Networking Service
+		"MapsBroker"								# Downloaded Maps Manager
+		"NetTcpPortSharing"							# Net.Tcp Port Sharing Service
+		"RemoteAccess"								# Routing and Remote Access
+		"RemoteRegistry"							# Remote Registry
+		"SharedAccess"								# Internet Connection Sharing (ICS)
+		"TrkWks"									# Distributed Link Tracking Client
+		"WMPNetworkSvc"								# Windows Media Player Network Sharing Service
+		"WbioSrvc"									# Windows Biometric Service
+		"WinRM"										# Windows Remote Management (WS-Management)
+		"XblAuthManager"							# Xbox Live Auth Manager
+		"XblGameSave"								# Xbox Live Game Save Service
+		"XboxNetApiSvc"								# Xbox Live Networking Service
+		"diagnosticshub.standardcollector.service"	# Microsoft (R) Diagnostics Hub Standard Collector Service
+		"lfsvc"										# Geolocation Service
+		# "MessagingService_*"						# MessagingService_xxxxx
+		# "OneSyncSvc_*" 							# Sync Host_xxxxx
+		# "PimIndexMaintenanceSvc_*"				# Contact Data_xxxxx
+		# "UnistoreSvc_*"							# User Data Storage_xxxxx
+		# "UserDataSvc_*"							# User Data Access_xxxxx
 	)
 
 	foreach ($service in $services) {
 		Write-Host "Trying to disable $service..."
 		Get-Service -Name $service | Set-Service -StartupType Disabled
 	}
-	
-	Set-Content C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl -Value "" -Force
 }
 
 # Enable services that are not needed
 function EnableWindowsServices {
 	$services = @(
-		"diagnosticshub.standardcollector.service" # Microsoft (R) Diagnostics Hub Standard Collector Service
-		"DiagTrack"                                # Diagnostics Tracking Service
-		"dmwappushservice"                         # WAP Push Message Routing Service (see known issues)
-		"HomeGroupListener"                        # HomeGroup Listener
-		"HomeGroupProvider"                        # HomeGroup Provider
-		"lfsvc"                                    # Geolocation Service
-		"MapsBroker"                               # Downloaded Maps Manager
-		"NetTcpPortSharing"                        # Net.Tcp Port Sharing Service
-		"RemoteAccess"                             # Routing and Remote Access
-		"RemoteRegistry"                           # Remote Registry
-		"SharedAccess"                             # Internet Connection Sharing (ICS)
-		"TrkWks"                                   # Distributed Link Tracking Client
-		"WbioSrvc"                                 # Windows Biometric Service
-		#"WlanSvc"                                 # WLAN AutoConfig
-		"WMPNetworkSvc"                            # Windows Media Player Network Sharing Service
-		"wscsvc"                                   # Windows Security Center Service
-		#"WSearch"                                 # Windows Search
-		"XblAuthManager"                           # Xbox Live Auth Manager
-		"XblGameSave"                              # Xbox Live Game Save Service
-		"XboxNetApiSvc"                            # Xbox Live Networking Service
+		"MapsBroker"								# Downloaded Maps Manager
+		"MessagingService_*"						# MessagingService_xxxxx
+		"NetTcpPortSharing"							# Net.Tcp Port Sharing Service
+		"RemoteAccess"								# Routing and Remote Access
+		"RemoteRegistry"							# Remote Registry
+		"SharedAccess"								# Internet Connection Sharing (ICS)
+		"TrkWks"									# Distributed Link Tracking Client
+		"WMPNetworkSvc"								# Windows Media Player Network Sharing Service
+		"WbioSrvc"									# Windows Biometric Service
+		"WinRM"										# Windows Remote Management (WS-Management)
+		"XblAuthManager"							# Xbox Live Auth Manager
+		"XblGameSave"								# Xbox Live Game Save Service
+		"XboxNetApiSvc"								# Xbox Live Networking Service
+		"diagnosticshub.standardcollector.service"	# Microsoft (R) Diagnostics Hub Standard Collector Service
+		"lfsvc"										# Geolocation Service
+		# "MessagingService_*"						# MessagingService_xxxxx
+		# "OneSyncSvc_*" 							# Sync Host_xxxxx
+		# "PimIndexMaintenanceSvc_*"				# Contact Data_xxxxx
+		# "UnistoreSvc_*"							# User Data Storage_xxxxx
+		# "UserDataSvc_*"							# User Data Access_xxxxx
 	)
 
 	foreach ($service in $services) {
 		Write-Host "Trying to enable $service..."
 		Get-Service -Name $service | Set-Service -StartupType Enable
 	}
-	
-	Set-Content C:\ProgramData\Microsoft\Diagnosis\ETLLogs\AutoLogger\AutoLogger-Diagtrack-Listener.etl -Value "" -Force
 }
 
 # Disable potentially unwanted scheduled tasks
 function DisableScheduledTasks {
 	$tasks = @(
-		"Microsoft\Windows\Application Experience\ProgramDataUpdater"
-		"Microsoft\Windows\AppID\SmartScreenSpecific"
-		"Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser"
 		"Microsoft\Windows\CloudExperienceHost\CreateObjectTask"
-		"Microsoft\Windows\Customer Experience Improvement Program\Consolidator"
-		"Microsoft\Windows\Customer Experience Improvement Program\KernelCeipTask"
-		"Microsoft\Windows\Customer Experience Improvement Program\UsbCeip"
 		"Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector"
+		"Microsoft\Windows\DiskFootprint\Diagnostics"
 		"Microsoft\Windows\Feedback\Siuf\DmClient"
 		"Microsoft\Windows\NetTrace\GatherNetworkInfo"
 		"Microsoft\Windows\Windows Error Reporting\QueueReporting"
 	)
-	
 	foreach ($task in $tasks) {
 		Write-Host "Trying to disable $task..."
-		schtasks /Change /TN $task /Disable | out-null
+		schtasks /Change /TN $task /Disable | Out-Null
 	}
 }
 
 # Enable potentially unwanted scheduled tasks
 function EnableScheduledTasks {
 	$tasks = @(
-		"Microsoft\Windows\Application Experience\ProgramDataUpdater"
-		"Microsoft\Windows\AppID\SmartScreenSpecific"
-		"Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser"
 		"Microsoft\Windows\CloudExperienceHost\CreateObjectTask"
-		"Microsoft\Windows\Customer Experience Improvement Program\Consolidator"
-		"Microsoft\Windows\Customer Experience Improvement Program\KernelCeipTask"
-		"Microsoft\Windows\Customer Experience Improvement Program\UsbCeip"
 		"Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector"
+		"Microsoft\Windows\DiskFootprint\Diagnostics"
 		"Microsoft\Windows\Feedback\Siuf\DmClient"
 		"Microsoft\Windows\NetTrace\GatherNetworkInfo"
 		"Microsoft\Windows\Windows Error Reporting\QueueReporting"
 	)
-	
 	foreach ($task in $tasks) {
 		Write-Host "Trying to enable $task..."
-		schtasks /Change /TN $task /Enable | out-null
+		schtasks /Change /TN $task /Enable | Out-Null
 	}
 }
 
@@ -1893,33 +2178,34 @@ Function InstallNETFramework35 {
 	Enable-WindowsOptionalFeature -Online -FeatureName "NetFx3" -NoRestart -WarningAction SilentlyContinue | Out-Null
 }
 
-# Remove .NET Framework 3.5
-Function RemoveNETFramework35 {
-	Write-Host "Installing .NET Framework 3.5..."
+# Uninstall .NET Framework 3.5
+Function UninstallNETFramework35 {
+	Write-Host "Uninstalling .NET Framework 3.5..."
 	Disable-WindowsOptionalFeature -Online -FeatureName "NetFx3" -NoRestart -WarningAction SilentlyContinue | Out-Null
 }
 
-# Uninstall good-for-nothing-browser aka Internet Explorer
+# Install good-for-nothing-browser aka Internet Explorer
 Function InstallInternetExplorer {
 	Write-Host "Installing Internet Explorer..."
 	Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -WarningAction SilentlyContinue | Out-Null
 }
 
 # Uninstall good-for-nothing-browser aka Internet Explorer
-Function RemoveInternetExplorer {
-	Write-Host "Removing Internet Explorer..."
+Function UninstallInternetExplorer {
+	Write-Host "Uninstalling Internet Explorer..."
 	Disable-WindowsOptionalFeature -Online -FeatureName "Internet-Explorer-Optional-amd64" -NoRestart -WarningAction SilentlyContinue | Out-Null
 }
 
 # Set your preffered power option
 Function SetPowerPlan ($NewPlan) {
 	Try {
+		Write-Host "Trying to set the power plan to $NewPlan..."
 		$Plan = powercfg -l | %{if($_.contains($NewPlan)) {$_.split()[3]}}
 		$CurrPlan = $(powercfg -getactivescheme).split()[3]
 		if ($CurrPlan -ne $Plan) {powercfg -setactive $Plan}
     }
 	Catch {
-		Write-Warning -Message "Unable to set the power plan to $NewPlan"
+		Write-Warning -Message "Unable to set the power plan to $NewPlan!"
 	}
 }
 
@@ -1927,83 +2213,67 @@ Function SetPowerPlan ($NewPlan) {
 # Personal Use Tweaks #
 #######################
 
-# Remove pre-installed flash player
-Function RemoveFlashPlayer {
-	Write-Host "Removing Flash Player..."
-	
-	takeown /f "%windir%\System32\Macromed" /r /d y
-	icacls "%windir%\System32\Macromed" /grant administrators:F /t
-	Remove-Item -Recurse -Force "$Env:WinDir\System32\Macromed"
-
-	takeown /f "%windir%\SysWOW64\Macromed" /r /d y
-	icacls "%windir%\SysWOW64\Macromed" /grant administrators:F /t
-	Remove-Item -Recurse -Force "$Env:WinDir\SysWOW64\Macromed"
-
-	takeown /f "%windir%\SysWOW64\FlashPlayerApp.exe" /r /d y
-	icacls "%windir%\SysWOW64\FlashPlayerApp.exe" /grant administrators:F /t
-	Remove-Item -Force "$Env:WinDir\SysWOW64\FlashPlayerApp.exe"
-
-	takeown /f "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /r /d y
-	icacls "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /grant administrators:F /t
-	Remove-Item -Force "$Env:WinDir\SysWOW64\FlashPlayerCPLApp.cpl"
-
-	Remove-Item -Recurse -Force "$env:APPDATA\Adobe"
-	Remove-Item -Recurse -Force "$env:APPDATA\Macromedia"
+# Uninstall the pre-installed flash player
+Function UninstallFlashPlayer {
+	Write-Host "Uninstalling Flash Player..."
+	takeown /f "$env:SYSTEMROOT\System32\Macromed" /r /d y 2>&1 | Out-Null
+	icacls "$env:SYSTEMROOT\System32\Macromed" /grant administrators:F /t 2>&1 | Out-Null
+	Remove-Item -Recurse -Force "$Env:WinDir\System32\Macromed" -ErrorAction SilentlyContinue
+	takeown /f "$env:SYSTEMROOT\SysWOW64\Macromed" /r /d y 2>&1 | Out-Null
+	icacls "$env:SYSTEMROOT\SysWOW64\Macromed" /grant administrators:F /t 2>&1 | Out-Null
+	Remove-Item -Recurse -Force "$Env:WinDir\SysWOW64\Macromed" -ErrorAction SilentlyContinue
+	takeown /f "$env:SYSTEMROOT\SysWOW64\FlashPlayerApp.exe" /r /d y 2>&1 | Out-Null
+	icacls "$env:SYSTEMROOT\SysWOW64\FlashPlayerApp.exe" /grant administrators:F 2>&1 | Out-Null
+	Remove-Item -Force "$Env:WinDir\SysWOW64\FlashPlayerApp.exe" -ErrorAction SilentlyContinue
+	takeown /f "$env:SYSTEMROOT\SysWOW64\FlashPlayerCPLApp.cpl" /r /d y 2>&1 | Out-Null
+	icacls "$env:SYSTEMROOT\SysWOW64\FlashPlayerCPLApp.cpl" /grant administrators:F /t 2>&1 | Out-Null
+	Remove-Item -Force "$Env:WinDir\SysWOW64\FlashPlayerCPLApp.cpl" -ErrorAction SilentlyContinue
+	Remove-Item -Recurse -Force "$env:APPDATA\Adobe" -ErrorAction SilentlyContinue
+	Remove-Item -Recurse -Force "$env:APPDATA\Macromedia" -ErrorAction SilentlyContinue
 }
 
 # Create a shortcut on desktop for Extended Control Panel aka GodMode
 Function ExtendedPanelShortcut {
-	New-Item -ItemType Directory -Path (Join-Path $env:userprofile\desktop $_) -Name 'Extended Control Panel.{ED7BA470-8E54-465E-825C-99712043E01C}'
+	$WshShell = New-Object -ComObject WScript.Shell
+	$Shortcut = $WshShell.CreateShortcut("$env:userprofile\Desktop\Extended Control Panel.lnk")
+	$Shortcut.TargetPath = $Shortcut.TargetPath = "$env:SYSTEMROOT\explorer.exe"
+	$Shortcut.Arguments = "shell:::{ED7BA470-8E54-465E-825C-99712043E01C}"
+	$Shortcut.Save()
 }
 
-# Disable Advertising ID
-Function DisableAdvertisingID {
-	Write-Host "Disabling Advertising ID..."
-	If (!(Test-Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo")) {
-		New-Item -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" | Out-Null
-	}
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -Type DWord -Value 0
-}
-
-# Enable Advertising ID
-Function EnableAdvertisingID {
-	Write-Host "Enabling Advertising ID..."
-	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" -Name "Enabled" -ErrorAction SilentlyContinue
-}
-
-# Add Notepad to shell
-Function AddNotepadToShell {
-	Write-Host "Adding Notepad to right click menu"
+# Add Notepad to desktop shell
+Function AddNotepadToDesktopShell {
+	Write-Host "Adding Notepad to desktop shell (right click menu)"
 	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad")) {
 		New-Item -Path "HKCR:\Directory\Background\shell\Notepad" | Out-Null
 	}
 	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad\command")) {
 		New-Item -Path "HKCR:\Directory\Background\shell\Notepad\command" | Out-Null
 	}
-	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad\command" -Name "(Default)" -Type String -Value "C:\Windows\System32\notepad.exe"
+	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad\command" -Name "(Default)" -Type String -Value "$env:SYSTEMDRIVE\Windows\System32\notepad.exe"
 }
 
-# Remove Notepad from shell
-Function RemoveNotepadFromShell {
-	Write-Host "Removing Notepad from right click menu"
+# Remove Notepad from desktop shell
+Function RemoveNotepadFromDesktopShell {
+	Write-Host "Removing Notepad from desktop shell (right click menu)"
 	Remove-Item -Path "HKCR:\Directory\Background\shell\Notepad" -ErrorAction SilentlyContinue
 }
 
-# Add Notepad++ to shell (The application must be already installed)
-Function AddNotepadPPToShell {
-	Write-Host "Adding Notepad++ to right click menu"
+# Add Notepad++ to desktop shell (The application must be already installed)
+Function AddNotepadPPToDesktopShell {
+	Write-Host "Adding Notepad++ to desktop shell (right click menu"
 	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad++")) {
 		New-Item -Path "HKCR:\Directory\Background\shell\Notepad++" | Out-Null
 	}
 	If (!(Test-Path "HKCR:\Directory\Background\shell\Notepad++\command")) {
 		New-Item -Path "HKCR:\Directory\Background\shell\Notepad++\command" | Out-Null
 	}
-	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad++\command" -Name "(Default)" -Type String -Value "C:\Program Files (x86)\Notepad++\notepad++.exe"
+	Set-ItemProperty -Path "HKCR:\Directory\Background\shell\Notepad++\command" -Name "(Default)" -Type String -Value "$env:SYSTEMDRIVE\Program Files\Notepad++\notepad++.exe"
 }
 
-# Remove Notepad++ from shell
-Function RemoveNotepadPPFromShell {
-	Write-Host "Removing Notepad++ from right click menu"
+# Remove Notepad++ from dekstop shell
+Function RemoveNotepadPPFromDesktopShell {
+	Write-Host "Removing Notepad++ from desktop shell (right click menu)"
 	Remove-Item -Path "HKCR:\Directory\Background\shell\Notepad++" -ErrorAction SilentlyContinue
 }
 
@@ -2101,24 +2371,20 @@ Function RequireAdmin {
 }
 
 # Perform a registry backup
-Function BackupRegistry {
-	if (!(test-path -PathType Leaf C:\registry_backup_HKLM.reg)) { reg export HKLM C:\registry_backup_HKLM.reg | Out-Null }
-	if (!(test-path -PathType Leaf C:\registry_backup_HKCU.reg)) { reg export HKCU C:\registry_backup_HKCU.reg | Out-Null }
-	if (!(test-path -PathType Leaf C:\registry_backup_HKCR.reg)) { reg export HKCR C:\registry_backup_HKCR.reg | Out-Null }
+Function BackupRegistryFiles {
+	$date = (Get-Date).ToString('dd_MM_yyyy_HH_mm_ss')
+	Write-Host "Performing a registry backup..."
+	New-Item -ItemType Directory -Path $env:SYSTEMDRIVE\RegistryBackup\$date | Out-Null
+	$RegistryTrees = ("HKLM", "HKCU", "HKCR", "HKU", "HKCC")
+	Foreach ($Item in $RegistryTrees) {
+		reg export $Item $env:SYSTEMDRIVE\RegistryBackup\$date\$Item.reg | Out-Null
+	}
 }
 
 # Wait for key press
 Function WaitForKey {
 	Write-Host
-	Write-Host "Now head to Settings > Privacy and check the settings."
-	Write-Host "There MAY be something left out."
-	Write-Host "[!] You have to manually disable apps acces to contacts & email"
-	Write-Host "Settings > Privacy > Contacts"
-	Write-Host "Settings > Privacy > Email"
-	Write-Host "[!] You also have to disable background apps!"
-	Write-Host "Settings > Privacy > Background apps"
-	Write-Host
-	Write-Host "After you're done, pres any key and your PC will reboot." -ForegroundColor Black -BackgroundColor White
+	Write-Host "After you're done, you need to reboot." -ForegroundColor Black -BackgroundColor White
 	Write-Host "Press any key to continue..." -ForegroundColor Black -BackgroundColor White
 	[Console]::ReadKey($true) | Out-Null
 }

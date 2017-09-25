@@ -1,3 +1,29 @@
+############# v1.5 #############
++ Added:
+	FULL REGISTRY BACKUP BEFORE EXECUTING ANYTHING
+	DisableAppLaunchTracking
+	DisableSettingsExperimentation
+	DisablueBlutoothAds
+	RestrictAcessToTask
+	DisableBackgroundApps
+	DisableAppDiagnostics
+	DisableHandwritingData
+	DisableCEIP
+	DisableAIT
+	DisableACPI
+	DisableDefenderReporting
+	DisableRemoteDesktop
+	DisableSpotlight
+	My own preset
+- Deleted:
+	Batch file used to remove the flash player (it was integrated in the main script)
+* Modifications:
+	Changed the script name inside Tweaks.bat
+	Changed the custom preset
+	Fixed the file path inside Custom Preset.bat
+	Fixed some functions that were not working correctly
+################################
+
 ############# v1.4 #############
 Catched up to version 2.8 of Disassembler0
 + Added:

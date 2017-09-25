@@ -1,0 +1,121 @@
+# Custom Preset Example
+# Enter each function on a new line
+
+# Require Admin Privileges
+RequireAdmin
+
+# Registry Backup
+BackupRegistryFiles
+
+# Privacy
+DisableAdvertisingID
+DisableAppLaunchTracking
+DisableSettingsExperimentation
+DisableTypingInfo
+DisableAccessToLanguage
+DisableLocationTracking
+DisableMapUpdates
+DisableBluetoothAds
+DisableDeviceSyncing
+DisableFeedback
+DisableAppDiagnostics
+DisableTelemetry
+DisableCortana
+DisableWiFiSense
+DisableWebSearch
+DisableStartSuggestions
+DisableTipsAboutWindows
+DisableErrorReporting
+DisableHandwritingData
+SetP2PUpdateLocal
+DisableAutoLogger
+DisableDiagTrack
+DisableCEIP
+DisableAIT
+DisableACPI
+DisableWAPPush
+
+# App Access
+RestrictAccessToCamera
+RestrictAccessToMic
+RestrictAccessToNotifications
+RestrictAccountInfo
+RestrictAccessToContacts
+RestrictAccessToCalendar
+RestrictAccessToCallHistory
+RestrictAccessToEmail
+RestrictAccessToTasks
+RestrictAccessToMessages
+RestrictAccessToRadio
+DisableBackgroundApps
+
+# Services
+DisableAdminShares
+DisableSMB1
+SetCurrentNetworkPrivate
+DisableDefenderReporting
+DisableUpdateRestart
+DisableHomeGroups
+DisableRemoteAssistance
+DisableRemoteDesktop
+DisableSpotlight
+DisableAutoplay
+DisableAutorun
+EnableHibernation
+
+# UI
+DisableActionCenter
+HideNetworkFromLockScreen
+HideShutdownFromLockScreen
+DisableStickyKeys
+ShowTaskManagerDetails
+ShowFileOperationsDetails
+EnableFileDeleteConfirmation
+HideTaskView
+HideTaskbarPeopleIcon
+ShowKnownExtensions
+ShowHiddenFiles
+HideSyncNotifications
+HideRecentShortcuts
+SetExplorerThisPC
+ShowThisPCOnDesktop
+HideDesktopFromThisPC
+HideDocumentsFromThisPC
+HideDownloadsFromThisPC
+HideMusicFromThisPC
+HidePicturesFromThisPC
+HideVideosFromThisPC
+SetVisualFXPerformance
+EnableNumlock
+EnableOldVolumeMixer
+
+# Applications
+DisableOneDrive
+UninstallOneDrive
+UninstallMsftBloat
+UninstallThirdPartyBloat
+DisableConsumerApps
+DisableXboxFeatures
+# InstallLinuxSubsystem
+SetPhotoViewerAssociation
+AddPhotoViewerOpenWith
+DisableSearchAppInStore
+DisableNewAppPrompt
+EnableF8BootMenu
+SetDEPOptOut
+
+# Other stuff
+DisableWindowsServices
+DisableScheduledTasks
+InstallNETFramework35
+SetPowerPlan("High performance")
+
+# Personal
+UninstallFlashPlayer
+ExtendedPanelShortcut
+AddNotepadToDesktopShell
+AddNotepadPPToDesktopShell
+
+# Auxiliary
+WaitForKey
+Restart

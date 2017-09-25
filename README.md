@@ -10,7 +10,7 @@ The script consists of separate functions, each of which contains one tweak. The
 
 To supply a customized preset, you can either pass the function names directly as parameters.
 
-    powershell.exe -NoProfile -ExecutionPolicy Bypass -File Win10.ps1 EnableFirewall EnableDefender
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File Tweaks.ps1 EnableFirewall EnableDefender
 
 Or you can create a file where you write the function names (one function name per line, no commas, whitespaces allowed, comments on separate lines starting with `#`) and then pass the filename using *-preset* parameter.
 Example of a preset file `mypreset.txt`:
@@ -25,7 +25,7 @@ Example of a preset file `mypreset.txt`:
 
 Command using the preset file above:
 
-    powershell.exe -NoProfile -ExecutionPolicy Bypass -File Win10.ps1 -preset mypreset.txt
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File Tweaks.ps1 -preset mypreset.txt
 
 ## FAQ
 
