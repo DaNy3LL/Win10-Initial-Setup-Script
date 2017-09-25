@@ -72,6 +72,7 @@ $tweaks = @(
 	# "SetUACLow",                  		# "SetUACHigh",
 	# "EnableSharingMappedDrives",			# "DisableSharingMappedDrives",
 	"DisableAdminShares",					# "EnableAdminShares",
+	"DisableSharedExperiences",				# "EnableSharedExperiences",
 	"DisableSMB1",                			# "EnableSMB1",
 	"SetCurrentNetworkPrivate",     		# "SetCurrentNetworkPublic",
 	# "SetUnknownNetworksPrivate",  		# "SetUnknownNetworksPublic",
@@ -841,6 +842,18 @@ Function DisableAdminShares {
 Function EnableAdminShares {
 	Write-Host "Enabling implicit administrative shares..."
 	Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" -Name "AutoShareWks" -ErrorAction SilentlyContinue
+}
+
+# Disable Shared Experiences
+Function DisableSharedExperiences {
+	Write-Host "Disabling Shared Experiences..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CDP" -Name "RomeSdkChannelUserAuthzPolicy" -Type DWord -Value 0
+}
+
+# Enable Shared Experiences
+Function EnableSharedExperiences {
+	Write-Host "Enabling Shared Experiences..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CDP" -Name "RomeSdkChannelUserAuthzPolicy" -Type DWord -Value 1
 }
 
 # Disable obsolete SMB 1.0 protocol

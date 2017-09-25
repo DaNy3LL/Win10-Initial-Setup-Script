@@ -51,6 +51,7 @@ DisableBackgroundApps
 
 # Services
 DisableAdminShares
+DisableSharedExperiences
 DisableSMB1
 SetCurrentNetworkPrivate
 DisableDefenderReporting
