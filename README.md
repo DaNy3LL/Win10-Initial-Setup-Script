@@ -48,7 +48,7 @@ Command using the preset file above:
 **A:** Yes. I'm testing new additions on up-to-date Home and Enterprise editions in VMs. I'm also regularly using it for all my home installations after all bigger updates.
 
 **Q**: I've run the script and it did xxx, how can I undo it?  
-**A:** For every tweak, there is also a corresponding function which restores the default settings. Use them to create and run new preset. Alternatively, since most functions are just automation for actions which can be done using GUI, find appropriate control and modify it manually.
+**A:** For every tweak, there is also a corresponding function which restores the default settings. The default is considered freshly installed Windows 10 or Windows Server 2016 with no adjustments made during or after the installation. Use the tweaks to create and run new preset. Alternatively, since most functions are just automation for actions which can be done using GUI, find appropriate control and modify it manually.
 
 **Q:** I've run the script and it broke my computer / killed neighbor's dog / caused world war 3.  
 **A:** I don't care. Also, that's not a question.
