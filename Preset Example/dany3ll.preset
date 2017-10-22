@@ -52,7 +52,7 @@ DisableBackgroundApps
 # Services
 DisableAdminShares
 DisableSharedExperiences
-DisableSMB1
+# DisableSMB1
 SetCurrentNetworkPrivate
 DisableDefenderReporting
 DisableUpdateRestart
@@ -86,6 +86,7 @@ HideDownloadsFromThisPC
 HideMusicFromThisPC
 HidePicturesFromThisPC
 HideVideosFromThisPC
+Hide3DObjectsFromThisPC
 SetVisualFXPerformance
 EnableNumlock
 EnableOldVolumeMixer
@@ -97,6 +98,7 @@ UninstallMsftBloat
 UninstallThirdPartyBloat
 DisableConsumerApps
 DisableXboxFeatures
+DisableAdobeFlash
 # InstallLinuxSubsystem
 SetPhotoViewerAssociation
 AddPhotoViewerOpenWith

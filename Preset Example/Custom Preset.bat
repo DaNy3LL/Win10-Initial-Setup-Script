@@ -2,4 +2,4 @@
 cls
 echo Executing Custom Preset from custom.preset
 echo ------------------------------------------
-PowerShell -NoProfile -ExecutionPolicy Bypass -File "%~dp0..\Main Scripts\Tweaks.ps1" -preset "%~dp0custom.preset"
+PowerShell -NoProfile -ExecutionPolicy Bypass -File "..\Main Scripts\Tweaks.ps1" -preset "custom.preset"
