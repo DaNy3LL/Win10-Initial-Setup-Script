@@ -4,33 +4,33 @@
 # NOTE: Those are the apps that I like to install. You are free to adopt it to your personal taste.
 
 $packages = @(
-	# basic packages that I need ASAP
+	# Basic packages that I need ASAP
+	# Note: I usually get the others later, using https://ninite.com (they are listed there just in case I need them)
 	"7zip.install"
 	"firefox"
 	"notepadplusplus.install"
 	
 	# Other Packages
-	# "audacity"
-	# "gimp"
-	# "handbrake.install"
-	# "jre8"
-	# "k-litecodecpackfull"
-	# "imgburn"
-	# "keepass.install"
-	# "keepass-keepasshttp"
-	# "libreoffice"
-	# "putty"
-	# "python"
-	# "python2"
-	# "qbittorrent"
-	# "sharex"
-	# "skype"
-	# "spotify"
-	# "sumatrapdf.install"
-	# "teamviewer"
-	# "thunderbird"
-	# "vlc"
-	# "winscp"
+	"audacity"
+	"ccleaner"
+	"gimp"
+	"handbrake.install"
+	"imgburn"
+	"jre8"
+	"k-litecodecpackfull"
+	"keepass-keepasshttp"
+	"keepass.install"
+	"libreoffice"
+	"putty"
+	"qbittorrent"
+	"sharex"
+	"skype"
+	"spotify"
+	"sumatrapdf.install"
+	"teamviewer"
+	"thunderbird"
+	"vlc"
+	"winscp"
 )
 
 Write-Host "Setting up Chocolatey in software package manager"
@@ -55,11 +55,11 @@ Register-ScheduledJob @ScheduledJob
 Write-Host "Installing Packages"
 $packages | %{choco install $_ --force -y}
 
-Write-Host "Installing Sysinternals Utilities to C:\Sysinternals"
-$download_uri = "https://download.sysinternals.com/files/SysinternalsSuite.zip"
-$wc = new-object net.webclient
-$wc.DownloadFile($download_uri, "/SysinternalsSuite.zip")
-Add-Type -AssemblyName "system.io.compression.filesystem"
-[io.compression.zipfile]::ExtractToDirectory("/SysinternalsSuite.zip", "/Sysinternals")
-Write-Host "Removing temporary file"
-rm "/SysinternalsSuite.zip"
+# Write-Host "Installing Sysinternals Utilities to C:\Sysinternals"
+# $download_uri = "https://download.sysinternals.com/files/SysinternalsSuite.zip"
+# $wc = new-object net.webclient
+# $wc.DownloadFile($download_uri, "/SysinternalsSuite.zip")
+# Add-Type -AssemblyName "system.io.compression.filesystem"
+# [io.compression.zipfile]::ExtractToDirectory("/SysinternalsSuite.zip", "/Sysinternals")
+# Write-Host "Removing temporary file"
+# rm "/SysinternalsSuite.zip"
